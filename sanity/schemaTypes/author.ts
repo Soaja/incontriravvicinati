@@ -21,6 +21,19 @@ export const author = defineType({
     defineField({name: 'role', title: 'Ruolo', type: 'string'}),
     defineField({name: 'bio', title: 'Biografia', type: 'text', rows: 5}),
     defineField({
+      name: 'showInEditorialTeam',
+      title: 'Mostra nella redazione',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'order',
+      title: 'Ordine nella redazione',
+      type: 'number',
+      description: 'Numero più basso = posizione più alta nella pagina.',
+      validation: (rule) => rule.integer().min(0),
+    }),
+    defineField({
       name: 'photo',
       title: 'Foto',
       type: 'image',

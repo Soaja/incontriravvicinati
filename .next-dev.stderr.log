@@ -1,0 +1,1773 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedHero>
+                                        <section className="featured-hero" aria-labelledby="featured-a...">
+                                          <div
+                                            className="featured-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <article className="featured-h...">
+                                            <div
+                                              className="featured-hero__intro"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__supporting"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <div
+                                                className="featured-hero__footer"
+-                                               bis_skin_checked="1"
+                                              >
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <h2>
+                                        <div
+                                          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+-                                         bis_skin_checked="1"
+                                        >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedHero>
+                                        <section className="featured-hero" aria-labelledby="featured-a...">
+                                          <div
+                                            className="featured-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <article className="featured-h...">
+                                            <div
+                                              className="featured-hero__intro"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__supporting"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <div
+                                                className="featured-hero__footer"
+-                                               bis_skin_checked="1"
+                                              >
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <h2>
+                                        <div
+                                          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+-                                         bis_skin_checked="1"
+                                        >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/articoli/..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <meta>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="__next_bui...">
+                                  <SegmentTrieNode>
+                                  <NotFound>
+                                    <HTTPAccessErrorFallback>
+                                      <title>
+                                      <div
+                                        style={{fontFamily:"system-ui,...",height:"100vh",textAlign:"center",display:"flex", ...}}
+-                                       bis_skin_checked="1"
+                                      >
+                                        <div
+-                                         bis_skin_checked="1"
+                                        >
+                                          <style>
+                                          <h1>
+                                          <div
+                                            style={{display:"inline-block"}}
+-                                           bis_skin_checked="1"
+                                          >
+                                ...
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedHero>
+                                        <section className="featured-hero" aria-labelledby="featured-a...">
+                                          <div
+                                            className="featured-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <article className="featured-h...">
+                                            <div
+                                              className="featured-hero__intro"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__supporting"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <div
+                                                className="featured-hero__footer"
+-                                               bis_skin_checked="1"
+                                              >
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedHero>
+                                        <section className="featured-hero" aria-labelledby="featured-a...">
+                                          <div
+                                            className="featured-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <article className="featured-h...">
+                                            <div
+                                              className="featured-hero__intro"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="featured-hero__supporting"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <div
+                                                className="featured-hero__footer"
+-                                               bis_skin_checked="1"
+                                              >
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <SloganSection>
+                                        <section className="slogan-sec..." aria-labelledby="slogan-hea...">
+                                          <header>
+                                          <div
+                                            className="slogan-section__composition"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <h2>
+                                            <div
+                                              className="slogan-section__footer"
+-                                             bis_skin_checked="1"
+                                            >
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <SloganSection>
+                                        <section className="slogan-sec..." aria-labelledby="slogan-hea...">
+                                          <header>
+                                          <div
+                                            className="slogan-section__composition"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <h2>
+                                            <div
+                                              className="slogan-section__footer"
+-                                             bis_skin_checked="1"
+                                            >
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <SloganSection>
+                                        <section className="slogan-sec..." aria-labelledby="slogan-hea...">
+                                          <header>
+                                          <div
+                                            className="slogan-section__composition"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <h2>
+                                            <div
+                                              className="slogan-section__footer"
+-                                             bis_skin_checked="1"
+                                            >
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <SloganSection>
+                                        <section className="slogan-sec..." aria-labelledby="slogan-hea...">
+                                          <header>
+                                          <div
+                                            className="slogan-section__composition"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <h2>
+                                            <div
+                                              className="slogan-section__footer"
+-                                             bis_skin_checked="1"
+                                            >
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/redazione" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="redazione/...">
+                                  <SegmentTrieNode>
+                                  <RedazionePage>
+                                    <main id="main-content" className="site-conta...">
+                                      <header className="redazione-...">
+                                        <div
+                                          className="redazione-hero__label"
+-                                         bis_skin_checked="1"
+                                        >
+                                        ...
+                                      <section className="editorial-..." aria-labelledby="editorial-...">
+                                        <header>
+                                        <div
+                                          className="editorial-team__empty"
+-                                         bis_skin_checked="1"
+                                        >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  [90m2 |[0m [36mimport[0m {[33mGeist[0m, [33mJura[0m} [36mfrom[0m [32m'next/font/google'[0m
+  [90m3 |[0m
+[31m[1m>[0m [90m4 |[0m [36mimport[0m {[33mFooter[0m} [36mfrom[0m [32m'./components/Footer'[0m
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m [36mimport[0m {[33mHeader[0m} [36mfrom[0m [32m'./components/Header'[0m
+  [90m6 |[0m [36mimport[0m [32m'./globals.css'[0m
+  [90m7 |[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./app/layout.tsx:4:1
+Error: Module not found: Can't resolve './components/Footer'
+  2 | import {Geist, Jura} from 'next/font/google'
+  3 |
+> 4 | import {Footer} from './components/Footer'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import {Header} from './components/Header'
+  6 | import './globals.css'
+  7 |
+
+https://nextjs.org/docs/messages/module-not-found 

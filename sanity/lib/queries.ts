@@ -91,3 +91,34 @@ export const FEATURED_ISSUE_QUERY = defineQuery(/* groq */ `
     "pdfUrl": pdfFile.asset->url
   }
 `)
+
+export const EDITORIAL_TEAM_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "author" &&
+    showInEditorialTeam == true
+  ] | order(coalesce(order, 9999) asc, name asc, _id asc) {
+    _id,
+    name,
+    "slug": slug.current,
+    role,
+    bio,
+    order,
+    "photo": select(
+      defined(photo.asset._ref) => photo {
+        asset,
+        crop,
+        hotspot,
+        alt
+      },
+      null
+    )
+  }
+`)
+
+export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
+  *[_type == "siteSettings"] | order(_updatedAt desc, _id asc)[0] {
+    contactEmail,
+    instagramUrl,
+    footerText
+  }
+`)

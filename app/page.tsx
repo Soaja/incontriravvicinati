@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {FeaturedIssueHero, type FeaturedIssue} from '@/app/components/FeaturedIssueHero'
 import {LongformFeature, type LongformArticle} from '@/app/components/LongformFeature'
 import {ReviewsSection, type ReviewArticle} from '@/app/components/ReviewsSection'
+import {SloganSection} from '@/app/components/SloganSection'
 import {client} from '@/sanity/lib/client'
 import {urlFor} from '@/sanity/lib/image'
 import {FEATURED_ISSUE_QUERY, HOMEPAGE_QUERY} from '@/sanity/lib/queries'
@@ -127,6 +128,8 @@ export default async function Home() {
           <p className="latest-articles__empty">Nessun articolo pubblicato.</p>
         )}
       </section>
+
+      <SloganSection />
 
       <ReviewsSection reviews={latestReviews} />
 
