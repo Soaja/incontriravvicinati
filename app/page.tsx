@@ -1,69 +1,136 @@
-import Image from "next/image";
+import type {SanityImageSource} from '@sanity/image-url'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export default function Home() {
+import {FeaturedIssueHero, type FeaturedIssue} from '@/app/components/FeaturedIssueHero'
+import {LongformFeature, type LongformArticle} from '@/app/components/LongformFeature'
+import {ReviewsSection, type ReviewArticle} from '@/app/components/ReviewsSection'
+import {client} from '@/sanity/lib/client'
+import {urlFor} from '@/sanity/lib/image'
+import {FEATURED_ISSUE_QUERY, HOMEPAGE_QUERY} from '@/sanity/lib/queries'
+
+type ArticleSummary = {
+  _id: string
+  title: string | null
+  slug: string | null
+  articleType: string | null
+  publishedAt: string | null
+  readingTime: number | null
+  author: {name: string | null} | null
+  coverImage: (SanityImageSource & {alt?: string | null}) | null
+}
+
+type HomepageData = {
+  latestArticles: ArticleSummary[]
+  latestReviews: ReviewArticle[]
+  featuredLongform: LongformArticle | null
+}
+
+const dateFormatter = new Intl.DateTimeFormat('it-IT', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+})
+
+function formatDate(value: string | null) {
+  return value ? dateFormatter.format(new Date(value)) : 'Data non disponibile'
+}
+
+function articleMeta(article: ArticleSummary) {
+  const parts = [
+    article.author?.name ?? 'Autore non disponibile',
+    formatDate(article.publishedAt),
+  ]
+
+  if (article.readingTime) {
+    parts.push(`${article.readingTime} min di lettura`)
+  }
+
+  return parts.join(' · ')
+}
+
+export default async function Home() {
+  const [{latestArticles, latestReviews, featuredLongform}, featuredIssue] = await Promise.all([
+    client.fetch<HomepageData>(HOMEPAGE_QUERY),
+    client.fetch<FeaturedIssue | null>(FEATURED_ISSUE_QUERY),
+  ])
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    <main id="main-content" className="site-container w-full py-12 md:py-16">
+      <h1 className="sr-only">Incontri Ravvicinati</h1>
+      <FeaturedIssueHero issue={featuredIssue} />
+
+      <section id="ultimi-articoli" aria-labelledby="latest-heading">
+        <header className="latest-articles__header">
+          <h2 id="latest-heading">Ultimi articoli</h2>
+          <Link className="latest-articles__all type-meta" href="/articoli">
+            Vedi tutti <span aria-hidden="true">↗</span>
+          </Link>
+        </header>
+
+        {latestArticles.length > 0 ? (
+          <div className="latest-articles__grid">
+            {latestArticles.map((article, index) => {
+              const articleHref = article.slug ? `/articoli/${article.slug}` : null
+              const articleTitle = article.title ?? 'Titolo non disponibile'
+              const coverImage = article.coverImage ? (
+                <div className="latest-article__media">
+                  <Image
+                    src={urlFor(article.coverImage)
+                      .width(index === 0 ? 1400 : 900)
+                      .height(index === 0 ? 1050 : 1100)
+                      .fit('crop')
+                      .auto('format')
+                      .url()}
+                    alt={article.coverImage.alt ?? articleTitle}
+                    fill
+                    sizes={
+                      index === 0
+                        ? '(max-width: 767px) 100vw, 58vw'
+                        : '(max-width: 767px) 100vw, (max-width: 1100px) 42vw, 30vw'
+                    }
+                  />
+                </div>
+              ) : null
+
+              return (
+                <article key={article._id} className="latest-article">
+                  <div className="latest-article__label">
+                    <p className="type-meta">{article.articleType ?? 'Articolo'}</p>
+                    <span aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
+                  </div>
+
+                  {coverImage ? (
+                    articleHref ? (
+                      <Link
+                        className="latest-article__image-link"
+                        href={articleHref}
+                        aria-label={`Leggi ${articleTitle}`}
+                      >
+                        {coverImage}
+                      </Link>
+                    ) : (
+                      coverImage
+                    )
+                  ) : null}
+
+                  <h3 className="latest-article__title">
+                    {articleHref ? <Link href={articleHref}>{articleTitle}</Link> : articleTitle}
+                  </h3>
+                  <p className="latest-article__meta type-meta">{articleMeta(article)}</p>
+                </article>
+              )
+            })}
+          </div>
+        ) : (
+          <p className="latest-articles__empty">Nessun articolo pubblicato.</p>
+        )}
+      </section>
+
+      <ReviewsSection reviews={latestReviews} />
+
+      <LongformFeature article={featuredLongform} />
+    </main>
+  )
 }
