@@ -106,13 +106,6 @@ export default async function ContattiPage() {
         </div>
       </section>
 
-      <aside className="contact-note" aria-label="Indicazioni per contattarci">
-        <p className="type-meta">Una nota prima di scrivere</p>
-        <p>
-          Preferiamo messaggi chiari e proposte curate. Non serve avere tutto già definito:
-          basta una buona idea, il tempo per raccontarla e la voglia di costruire un dialogo.
-        </p>
-      </aside>
     </main>
   )
 }

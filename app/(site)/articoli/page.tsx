@@ -22,7 +22,7 @@ const articleTypes = [
   {value: 'retrospettiva', label: 'Retrospettive'},
   {value: 'news', label: 'News'},
   {value: 'reportage', label: 'Reportage'},
-  {value: 'selezione', label: 'Selezioni'},
+  {value: 'selezione', label: 'Altri articoli'},
 ] as const
 
 const allowedArticleTypes = new Set<string>(articleTypes.map(({value}) => value))
@@ -85,8 +85,9 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
         </div>
         <h1>Articoli</h1>
         <p className="articles-page__intro">
-          Recensioni, interviste, reportage e percorsi nella cultura cinematografica
-          contemporanea.
+          Analisi, interviste, approfondimenti, news e tanti altri contenuti, che
+          affiancheranno la nostra rivista (a cadenza trimestrale), per raccontare con
+          puntualità le dinamiche del mondo cinematografico, dentro e fuori dai set.
         </p>
       </header>
 

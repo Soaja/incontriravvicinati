@@ -87,11 +87,6 @@ export default async function RedazionePage() {
         </div>
 
         <h1>La redazione</h1>
-        <p className="redazione-hero__intro">
-          Una redazione indipendente che osserva il cinema da prospettive diverse. Critica,
-          ricerca, immagini e conversazioni per costruire uno spazio editoriale aperto e
-          contemporaneo.
-        </p>
       </header>
 
       <section className="masthead-direction" aria-labelledby="direction-heading">

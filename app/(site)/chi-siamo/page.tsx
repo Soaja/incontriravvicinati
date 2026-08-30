@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 
 const principles = [
   {
-    title: 'Cinema come linguaggio',
+    title: 'Oltre lo schermo',
     description:
-      'Il film non come prodotto, ma come forma di espressione, memoria e confronto.',
+      'Il film come veicolo di espressione e confronto.',
   },
   {
     title: 'Critica indipendente',
     description:
-      'Uno spazio libero, personale e consapevole, lontano dalla logica del consenso immediato.',
+      'Uno spazio libero dove offrire analisi e riflessioni ragionate.',
   },
   {
     title: 'Nuove prospettive',
     description:
-      'Attenzione alle nuove voci, ai linguaggi emergenti e alle connessioni tra cinema e cultura visiva.',
+      'Attenzione alle nuove voci, ai linguaggi emergenti e all’evoluzione del mezzo cinematografico.',
   },
 ]
 
@@ -37,9 +37,9 @@ export default function ChiSiamoPage() {
 
         <h1>Chi siamo</h1>
         <p className="about-hero__intro">
-          Incontri Ravvicinati è uno spazio editoriale indipendente dedicato al cinema e alla
-          cultura delle immagini. Un luogo in cui critica, ricerca e visioni personali si
-          incontrano per andare oltre la superficie dello schermo.
+          Incontri Ravvicinati è una rivista e un progetto editoriale indipendente dedicato al
+          cinema e al mondo dell’audiovisivo. Uno spazio di condivisione dove sguardi diversi
+          si scoprono.
         </p>
       </header>
 
@@ -49,9 +49,8 @@ export default function ChiSiamoPage() {
         </div>
         <h2 id="about-definition-heading">Cos&apos;è Incontri Ravvicinati</h2>
         <p>
-          Nasce dal desiderio di parlare di cinema senza ridurlo a giudizi rapidi o classifiche.
-          Incontri Ravvicinati raccoglie recensioni, interviste, approfondimenti e riflessioni
-          che cercano connessioni tra film, autori, immagini e cultura contemporanea.
+          Nasce dal desiderio di parlare di cinema con un punto di vista libero e inedito e un
+          approccio improntato alla qualità e all’approfondimento.
         </p>
       </section>
 

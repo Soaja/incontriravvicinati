@@ -53,7 +53,7 @@ export const article = defineType({
           {title: 'Retrospettiva', value: 'retrospettiva'},
           {title: 'News', value: 'news'},
           {title: 'Reportage', value: 'reportage'},
-          {title: 'Selezione', value: 'selezione'},
+          {title: 'Altri articoli', value: 'selezione'},
         ],
         layout: 'dropdown',
       },

@@ -27,6 +27,9 @@ const dateFormatter = new Intl.DateTimeFormat('it-IT', {
   timeZone: 'UTC',
 })
 
+const featuredIssueDescription =
+  "Il numero d’esordio di Incontri Ravvicinati è dedicato alla Mostra del Cinema di Venezia e ai grandi protagonisti dell’83ª edizione (02/09–12/09). Quale migliore occasione per inaugurare il nostro progetto. Scoprila scaricandola qui sotto!"
+
 export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
   if (!issue) {
     return null
@@ -75,7 +78,7 @@ export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
           </h2>
 
           <div className="issue-hero__details">
-            {issue.description ? <p className="issue-hero__description">{issue.description}</p> : null}
+            <p className="issue-hero__description">{featuredIssueDescription}</p>
             <p className="issue-hero__meta type-meta">
               {formattedDate}
               {issue.pageCount ? ` · ${issue.pageCount} pagine` : ''}
