@@ -3,6 +3,7 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {ArticleFilters} from '@/app/components/ArticleFilters'
 import {urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {ARTICLES_PAGE_QUERY} from '@/sanity/lib/queries'
@@ -88,23 +89,11 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
         </p>
       </header>
 
-      <nav className="article-filters" aria-label="Filtra gli articoli per tipologia">
-        <p className="type-meta">Esplora per tipologia</p>
-        <ul>
-          {articleTypes.map((type) => {
-            const href = type.value ? `/articoli?type=${type.value}` : '/articoli'
-            const isActive = type.value === articleType && !authorSlug
-
-            return (
-              <li key={type.value || 'all'}>
-                <Link href={href} aria-current={isActive ? 'page' : undefined}>
-                  {type.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
+      <ArticleFilters
+        options={articleTypes}
+        activeValue={articleType}
+        hasAuthorFilter={Boolean(authorSlug)}
+      />
 
       {authorSlug ? (
         <div className="articles-page__active-filter">

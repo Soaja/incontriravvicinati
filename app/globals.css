@@ -1871,6 +1871,10 @@ a:focus-visible {
   border-bottom-width: 0.3rem;
 }
 
+.article-filters__scroll {
+  display: none;
+}
+
 .articles-page__active-filter {
   display: flex;
   align-items: center;
@@ -3531,17 +3535,82 @@ a:focus-visible {
     padding-block: var(--space-8) var(--space-12);
   }
 
-  .article-filters ul {
+  .article-filters__shell {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-2);
+    grid-template-columns: minmax(0, 1fr) 3.25rem;
+    margin-inline: calc(-1 * var(--container-gutter));
+    border-block: var(--rule);
+  }
+
+  .article-filters ul {
+    flex-wrap: nowrap;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .article-filters ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .article-filters li {
+    flex: 0 0 calc((100vw - 3.25rem) / 3);
+    border-right: var(--rule);
+    scroll-snap-align: start;
   }
 
   .article-filters a {
-    min-height: 3rem;
+    width: 100%;
+    min-height: 3.25rem;
     justify-content: center;
-    padding-inline: var(--space-3);
+    border: 0;
+    padding: var(--space-2);
     text-align: center;
+  }
+
+  .article-filters a[aria-current="page"] {
+    box-shadow: inset 0 -0.3rem 0 var(--color-accent);
+  }
+
+  .article-filters__scroll {
+    display: grid;
+    min-width: 3.25rem;
+    min-height: 3.25rem;
+    place-items: center;
+    border: 0;
+    border-radius: 0;
+    background: var(--color-ink);
+    color: var(--color-accent);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .article-filters__scroll:active {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  .article-filters__scroll:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: -4px;
+  }
+
+  .article-filters__scroll svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 2;
+    transition: transform 180ms ease;
+  }
+
+  .article-filters__scroll--back svg {
+    transform: rotate(180deg);
   }
 
   .article-archive__header p,
@@ -3742,12 +3811,6 @@ a:focus-visible {
   }
 }
 
-@media (max-width: 23.5rem) {
-  .article-filters ul {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 47.99rem) and (orientation: landscape) {
   .site-nav-shell {
     grid-template-columns: 1fr;
@@ -3776,11 +3839,13 @@ a:focus-visible {
 }
 
 @media (max-width: 47.99rem) and (prefers-reduced-motion: reduce) {
-  .site-nav {
+  .site-nav,
+  .article-filters ul {
     scroll-behavior: auto;
   }
 
-  .site-nav__scroll svg {
+  .site-nav__scroll svg,
+  .article-filters__scroll svg {
     transition: none;
   }
 }
