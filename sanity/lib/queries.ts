@@ -170,3 +170,115 @@ export const ARTICLES_PAGE_QUERY = defineQuery(/* groq */ `
     )
   }
 `)
+
+export const ARTICLE_SLUGS_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "article" &&
+    defined(slug.current) &&
+    defined(publishedAt) &&
+    publishedAt <= now()
+  ]{"slug": slug.current}
+`)
+
+export const ARTICLE_METADATA_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "article" &&
+    slug.current == $slug &&
+    defined(publishedAt) &&
+    publishedAt <= now()
+  ][0] {
+    title,
+    excerpt,
+    publishedAt,
+    author->{name},
+    "coverImage": select(
+      defined(coverImage.asset._ref) => coverImage {
+        asset,
+        crop,
+        hotspot,
+        alt
+      },
+      null
+    )
+  }
+`)
+
+export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
+  {
+    "article": *[
+      _type == "article" &&
+      slug.current == $slug &&
+      defined(publishedAt) &&
+      publishedAt <= now()
+    ][0] {
+      _id,
+      title,
+      "slug": slug.current,
+      excerpt,
+      articleType,
+      publishedAt,
+      readingTime,
+      tags,
+      "coverImage": select(
+        defined(coverImage.asset._ref) => coverImage {
+          asset->{metadata{dimensions, lqip}},
+          crop,
+          hotspot,
+          alt,
+          caption
+        },
+        null
+      ),
+      body[]{
+        ...,
+        _type == "image" => {
+          asset->{metadata{dimensions, lqip}},
+          crop,
+          hotspot,
+          alt,
+          caption
+        }
+      },
+      author->{
+        name,
+        "slug": slug.current,
+        role,
+        bio,
+        "photo": select(
+          defined(photo.asset._ref) => photo {
+            asset->{metadata{dimensions, lqip}},
+            crop,
+            hotspot,
+            alt
+          },
+          null
+        )
+      },
+      "issue": *[
+        _type == "issue" &&
+        references(^._id)
+      ] | order(publicationDate desc, issueNumber desc)[0] {
+        title,
+        issueNumber
+      }
+    },
+    "related": *[
+      _type == "article" &&
+      slug.current != $slug &&
+      defined(slug.current) &&
+      defined(publishedAt) &&
+      publishedAt <= now()
+    ] | order(publishedAt desc, _id asc)[0...3] {
+      ${articleSummaryFields},
+      "coverImage": select(
+        defined(coverImage.asset._ref) => coverImage {
+          asset,
+          crop,
+          hotspot,
+          alt
+        },
+        null
+      )
+    }
+  }
+`)

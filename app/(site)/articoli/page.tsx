@@ -144,7 +144,33 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
                   </div>
 
                   {article.coverImage ? (
-                    <div className="article-archive-card__media">
+                    href ? (
+                      <Link
+                        className="article-archive-card__image-link"
+                        href={href}
+                        aria-label={`Leggi ${title}`}
+                      >
+                        <div className="article-archive-card__media">
+                          <Image
+                            src={urlFor(article.coverImage)
+                              .width(index === 0 ? 1400 : 900)
+                              .height(index === 1 ? 1200 : 900)
+                              .fit('crop')
+                              .auto('format')
+                              .url()}
+                            alt={article.coverImage.alt ?? title}
+                            fill
+                            priority={index === 0}
+                            sizes={
+                              index === 0
+                                ? '(max-width: 767px) 100vw, 64vw'
+                                : '(max-width: 767px) 100vw, 33vw'
+                            }
+                          />
+                        </div>
+                      </Link>
+                    ) : (
+                      <div className="article-archive-card__media">
                       <Image
                         src={urlFor(article.coverImage)
                           .width(index === 0 ? 1400 : 900)
@@ -161,7 +187,8 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
                             : '(max-width: 767px) 100vw, 33vw'
                         }
                       />
-                    </div>
+                      </div>
+                    )
                   ) : null}
 
                   <div className="article-archive-card__content">
