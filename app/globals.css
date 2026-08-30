@@ -1076,6 +1076,10 @@ a:focus-visible {
   text-underline-offset: 0.22em;
 }
 
+.site-nav__scroll {
+  display: none;
+}
+
 .editorial-page {
   --page-accent: var(--color-accent);
   padding-block: clamp(3rem, 8vw, 8rem);
@@ -3202,26 +3206,32 @@ a:focus-visible {
     margin-inline: calc(-1 * var(--container-gutter));
   }
 
-  .site-nav {
+  .site-nav-shell {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0;
+    grid-template-columns: minmax(0, 1fr) 3.25rem;
     border-block: var(--rule);
   }
 
-  .site-nav li:nth-child(-n + 3) {
-    grid-column: span 2;
-    border-bottom: var(--rule);
+  .site-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
 
-  .site-nav li:nth-child(n + 4) {
-    grid-column: span 3;
+  .site-nav::-webkit-scrollbar {
+    display: none;
   }
 
-  .site-nav li:nth-child(1),
-  .site-nav li:nth-child(2),
-  .site-nav li:nth-child(4) {
+  .site-nav li {
+    flex: 0 0 calc((100vw - 3.25rem) / 3);
     border-right: var(--rule);
+    scroll-snap-align: start;
   }
 
   .site-nav a {
@@ -3270,6 +3280,44 @@ a:focus-visible {
 
   .site-nav a:active::before {
     color: var(--color-ink);
+  }
+
+  .site-nav__scroll {
+    display: grid;
+    min-width: 3.25rem;
+    min-height: 3.25rem;
+    place-items: center;
+    border: 0;
+    background: var(--color-ink);
+    color: var(--color-accent);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .site-nav__scroll:active {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  .site-nav__scroll:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: -4px;
+  }
+
+  .site-nav__scroll svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: 1.6;
+    transition: transform 180ms ease;
+  }
+
+  .site-nav__scroll--back svg {
+    transform: rotate(180deg);
   }
 
   .site-container.w-full.py-12 {
@@ -3695,34 +3743,19 @@ a:focus-visible {
 }
 
 @media (max-width: 23.5rem) {
-  .site-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .site-nav li:nth-child(n) {
-    grid-column: 1 / -1;
-    border-right: 0;
-    border-bottom: var(--rule);
-  }
-
-  .site-nav li:last-child {
-    border-bottom: 0;
-  }
-
   .article-filters ul {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 47.99rem) and (orientation: landscape) {
-  .site-nav {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .site-nav-shell {
+    grid-template-columns: 1fr;
   }
 
-  .site-nav li:nth-child(n) {
-    grid-column: auto;
+  .site-nav li {
+    flex-basis: 20%;
     border-right: var(--rule);
-    border-bottom: 0;
   }
 
   .site-nav li:last-child {
@@ -3735,5 +3768,19 @@ a:focus-visible {
 
   .site-nav a::before {
     display: none;
+  }
+
+  .site-nav__scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 47.99rem) and (prefers-reduced-motion: reduce) {
+  .site-nav {
+    scroll-behavior: auto;
+  }
+
+  .site-nav__scroll svg {
+    transition: none;
   }
 }
