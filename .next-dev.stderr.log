@@ -1771,3 +1771,648 @@ Error: Module not found: Can't resolve './components/Footer'
   7 |
 
 https://nextjs.org/docs/messages/module-not-found 
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <Home>
+                                    <main id="main-content" className="site-conta...">
+                                      <h1>
+                                      <FeaturedIssueHero>
+                                        <section className="issue-hero" aria-labelledby="featured-i...">
+                                          <div
+                                            className="issue-hero__label"
+-                                           bis_skin_checked="1"
+                                          >
+                                          <div
+                                            className="issue-hero__layout"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <div
+                                              className="issue-hero__media"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="issue-hero__content"
+-                                             bis_skin_checked="1"
+                                            >
+                                              <p>
+                                              <h2>
+                                              <div
+                                                className="issue-hero__details"
+-                                               bis_skin_checked="1"
+                                              >
+                                              ...
+                                      <section id="ultimi-art..." aria-labelledby="latest-hea...">
+                                        <header>
+                                        <div
+                                          className="latest-articles__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="latest-art...">
+                                            <div
+                                              className="latest-article__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            ...
+                                      <SloganSection>
+                                        <section className="slogan-sec..." aria-labelledby="slogan-hea...">
+                                          <header>
+                                          <div
+                                            className="slogan-section__composition"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <h2>
+                                            <div
+                                              className="slogan-section__footer"
+-                                             bis_skin_checked="1"
+                                            >
+                                      <ReviewsSection>
+                                        <section className="reviews-se..." aria-labelledby="reviews-he...">
+                                          <header>
+                                          <div
+                                            className="reviews-section__grid"
+-                                           bis_skin_checked="1"
+                                          >
+                                            <article className="review-card">
+                                              <div
+                                                className="review-card__label"
+-                                               bis_skin_checked="1"
+                                              >
+                                              <div
+                                                className="review-card__body"
+-                                               bis_skin_checked="1"
+                                              >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <section className="site-contact" aria-labelledby="site-conta...">
+                                    <div
+                                      className="site-container"
+-                                     bis_skin_checked="1"
+                                    >
+                                      <div
+                                        className="site-contact__label"
+-                                       bis_skin_checked="1"
+                                      >
+                                      <div
+                                        className="site-contact__composition"
+-                                       bis_skin_checked="1"
+                                      >
+                                        <h2>
+                                        <div
+                                          className="site-contact__details"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <p>
+                                          <LinkComponent>
+                                          <div
+                                            className="site-contact__links type-meta"
+-                                           bis_skin_checked="1"
+                                          >
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/articoli" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="it" className="geist_a715...">
+                          <body
+-                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6InBwaGdkYmdsZGxtaWNmZGtob25kbGFma2lv..."
+                          >
+                            <a>
+                            <div
+                              className="site-shell"
+-                             bis_skin_checked="1"
+                            >
+                              <Header>
+                                <header className="site-header">
+                                  <div
+                                    className="site-container"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-header__utility"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                              ...
+                                <SegmentViewNode type="page" pagePath="articoli/p...">
+                                  <SegmentTrieNode>
+                                  <ArticoliPage>
+                                    <main id="main-content" className="site-conta...">
+                                      <header className="articles-p...">
+                                        <div
+                                          className="articles-page__label"
+-                                         bis_skin_checked="1"
+                                        >
+                                        ...
+                                      <nav>
+                                      <section className="article-ar..." aria-labelledby="article-ar...">
+                                        <header>
+                                        <div
+                                          className="article-archive__grid"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <article className="article-ar...">
+                                            <div
+                                              className="article-archive-card__label"
+-                                             bis_skin_checked="1"
+                                            >
+                                            <div
+                                              className="article-archive-card__content"
+-                                             bis_skin_checked="1"
+                                            >
+                              <Footer>
+                                <footer className="site-footer">
+                                  <section className="site-contact" aria-labelledby="site-conta...">
+                                    <div
+                                      className="site-container"
+-                                     bis_skin_checked="1"
+                                    >
+                                      <div
+                                        className="site-contact__label"
+-                                       bis_skin_checked="1"
+                                      >
+                                      <div
+                                        className="site-contact__composition"
+-                                       bis_skin_checked="1"
+                                      >
+                                        <h2>
+                                        <div
+                                          className="site-contact__details"
+-                                         bis_skin_checked="1"
+                                        >
+                                          <p>
+                                          <LinkComponent>
+                                          <div
+                                            className="site-contact__links type-meta"
+-                                           bis_skin_checked="1"
+                                          >
+                                  <div
+                                    className="site-container site-footer__grid"
+-                                   bis_skin_checked="1"
+                                  >
+                                    <div
+                                      className="site-footer__brand"
+                                      aria-label="Incontri Ravvicinati"
+-                                     bis_skin_checked="1"
+                                    >
+                                    ...
+                  ...
+ 
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\ostoj\AppData\Local\Temp\next-panic-9d50ee72cccd146bdde4122bc32d470b.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29&body=Turbopack%20version%3A%20%603d32eb87%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0ACell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%0ADebug%20info%3A%0A-%20Execution%20of%20all_hmr_update_with_issues_operation%20failed%0A-%20Execution%20of%20Project%3A%3Aall_hmr_update%20failed%0A-%20Execution%20of%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Execution%20of%20%3CEcmascriptMergedChunkContent%20as%20VersionedContent%3E%3A%3Aupdate%20failed%0A-%20Cell%20CellId%20%7B%20type_id%3A%20ValueTypeId%20%7B%20id%3A%20550%2C%20name%3A%20ValueType%20%7B%20name%3A%20%22turbopack_ecmascript%3A%3Ahmr%3A%3Aversion%3A%3AEcmascriptMergedChunkVersion%22%20%7D%20%7D%2C%20index%3A%200%20%7D%20no%20longer%20exists%20in%20task%20TaskId%20%7B%20id%3A%20568552%20%7D%20%3CEcmascriptBuildNodeChunkListContent%20as%20VersionedContent%3E%3A%3Aupdate%20%28no%20cell%20of%20this%20type%20exists%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error, resubscribing: Error [TurbopackInternalError]: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+
+Debug info:
+- Execution of all_hmr_update_with_issues_operation failed
+- Execution of Project::all_hmr_update failed
+- Execution of <EcmascriptBuildNodeChunkListContent as VersionedContent>::update failed
+- Execution of <EcmascriptMergedChunkContent as VersionedContent>::update failed
+- Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)
+    at <unknown> (TurbopackInternalError: Cell CellId { type_id: ValueTypeId { id: 550, name: ValueType { name: "turbopack_ecmascript::hmr::version::EcmascriptMergedChunkVersion" } }, index: 0 } no longer exists in task TaskId { id: 568552 } <EcmascriptBuildNodeChunkListContent as VersionedContent>::update (no cell of this type exists)) {
+  location: undefined
+}

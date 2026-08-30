@@ -1,3 +1,5 @@
+import {Analytics} from '@vercel/analytics/next'
+
 import {Footer} from '@/app/components/Footer'
 import {Header} from '@/app/components/Header'
 import {SanityLive} from '@/sanity/lib/live'
@@ -14,6 +16,7 @@ export default function SiteLayout({children}: LayoutProps<'/'>) {
         <Footer />
       </div>
       <SanityLive />
+      <Analytics />
     </>
   )
 }

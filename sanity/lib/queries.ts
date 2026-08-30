@@ -180,6 +180,18 @@ export const ARTICLE_SLUGS_QUERY = defineQuery(/* groq */ `
   ]{"slug": slug.current}
 `)
 
+export const SITEMAP_ARTICLES_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "article" &&
+    defined(slug.current) &&
+    defined(publishedAt) &&
+    publishedAt <= now()
+  ] | order(publishedAt desc, _id asc) {
+    "slug": slug.current,
+    _updatedAt
+  }
+`)
+
 export const ARTICLE_METADATA_QUERY = defineQuery(/* groq */ `
   *[
     _type == "article" &&
