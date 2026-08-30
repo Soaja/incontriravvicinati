@@ -2,7 +2,7 @@ import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import {PortableText, type PortableTextBlock, type PortableTextComponents} from 'next-sanity'
 
-import {urlFor} from '@/sanity/lib/image'
+import {getSanityImageUrl, hasValidImageReference} from '@/sanity/lib/image'
 
 type ArticleBodyImage = SanityImageSource & {
   alt?: string | null
@@ -16,18 +16,31 @@ type ArticleBodyImage = SanityImageSource & {
 }
 
 function BodyImage({value}: {value: ArticleBodyImage}) {
-  if (!value?.asset) {
+  if (!hasValidImageReference(value)) {
     return null
   }
 
-  const width = value.asset.metadata?.dimensions?.width ?? 1200
-  const height = value.asset.metadata?.dimensions?.height ?? 800
-  const lqip = value.asset.metadata?.lqip
+  const asset = value.asset
+
+  if (!asset || typeof asset !== 'object') {
+    return null
+  }
+
+  const width = asset.metadata?.dimensions?.width ?? 1200
+  const height = asset.metadata?.dimensions?.height ?? 800
+  const lqip = asset.metadata?.lqip
+  const imageUrl = getSanityImageUrl(value, (imageBuilder) =>
+    imageBuilder.width(1400).auto('format').url(),
+  )
+
+  if (!imageUrl) {
+    return null
+  }
 
   return (
     <figure className="article-body__figure">
       <Image
-        src={urlFor(value).width(1400).auto('format').url()}
+        src={imageUrl}
         alt={value.alt ?? ''}
         width={width}
         height={height}

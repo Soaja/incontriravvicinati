@@ -9,7 +9,7 @@ import type {PortableTextBlock} from 'next-sanity'
 
 import {ArticleBody} from '@/app/components/ArticleBody'
 import {client} from '@/sanity/lib/client'
-import {urlFor} from '@/sanity/lib/image'
+import {getSanityImageUrl, urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {
   ARTICLE_METADATA_QUERY,
@@ -127,9 +127,10 @@ export async function generateMetadata({params}: ArticlePageProps): Promise<Meta
   }
 
   const canonical = `${siteUrl}/articoli/${encodeURIComponent(slug)}`
-  const image = article.coverImage
-    ? urlFor(article.coverImage).width(1200).height(630).fit('crop').auto('format').url()
-    : undefined
+  const image =
+    getSanityImageUrl(article.coverImage, (imageBuilder) =>
+      imageBuilder.width(1200).height(630).fit('crop').auto('format').url(),
+    ) ?? undefined
 
   return {
     title: `${article.title} | Incontri Ravvicinati`,
@@ -162,9 +163,9 @@ export default async function ArticlePage({params}: ArticlePageProps) {
   const heroWidth = article.coverImage?.asset?.metadata?.dimensions?.width ?? 1600
   const heroHeight = article.coverImage?.asset?.metadata?.dimensions?.height ?? 1000
   const heroLqip = article.coverImage?.asset?.metadata?.lqip
-  const heroUrl = article.coverImage
-    ? urlFor(article.coverImage).width(1800).auto('format').url()
-    : null
+  const heroUrl = getSanityImageUrl(article.coverImage, (imageBuilder) =>
+    imageBuilder.width(1800).auto('format').url(),
+  )
   const issueLabel = article.issue?.issueNumber
     ? `N. ${String(article.issue.issueNumber).padStart(2, '0')}`
     : article.issue?.title
