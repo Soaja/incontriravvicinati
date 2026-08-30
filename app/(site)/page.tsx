@@ -6,8 +6,8 @@ import {FeaturedIssueHero, type FeaturedIssue} from '@/app/components/FeaturedIs
 import {LongformFeature, type LongformArticle} from '@/app/components/LongformFeature'
 import {ReviewsSection, type ReviewArticle} from '@/app/components/ReviewsSection'
 import {SloganSection} from '@/app/components/SloganSection'
-import {client} from '@/sanity/lib/client'
 import {urlFor} from '@/sanity/lib/image'
+import {sanityFetch} from '@/sanity/lib/live'
 import {FEATURED_ISSUE_QUERY, HOMEPAGE_QUERY} from '@/sanity/lib/queries'
 
 type ArticleSummary = {
@@ -52,10 +52,12 @@ function articleMeta(article: ArticleSummary) {
 }
 
 export default async function Home() {
-  const [{latestArticles, latestReviews, featuredLongform}, featuredIssue] = await Promise.all([
-    client.fetch<HomepageData>(HOMEPAGE_QUERY),
-    client.fetch<FeaturedIssue | null>(FEATURED_ISSUE_QUERY),
+  const [homepageResult, featuredIssueResult] = await Promise.all([
+    sanityFetch({query: HOMEPAGE_QUERY}),
+    sanityFetch({query: FEATURED_ISSUE_QUERY}),
   ])
+  const {latestArticles, latestReviews, featuredLongform} = homepageResult.data as HomepageData
+  const featuredIssue = featuredIssueResult.data as FeaturedIssue | null
 
   return (
     <main id="main-content" className="site-container w-full py-12 md:py-16">

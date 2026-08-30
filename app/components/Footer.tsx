@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import {client} from '@/sanity/lib/client'
+import {sanityFetch} from '@/sanity/lib/live'
 import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 import {BrandLogo} from './BrandLogo'
@@ -12,9 +12,8 @@ type SiteSettings = {
 }
 
 export async function Footer() {
-  const settings = await client
-    .fetch<SiteSettings | null>(SITE_SETTINGS_QUERY)
-    .catch(() => null)
+  const {data} = await sanityFetch({query: SITE_SETTINGS_QUERY}).catch(() => ({data: null}))
+  const settings = data as SiteSettings | null
   const contactEmail = settings?.contactEmail?.trim() || null
 
   return (

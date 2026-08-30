@@ -3,8 +3,8 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {client} from '@/sanity/lib/client'
 import {urlFor} from '@/sanity/lib/image'
+import {sanityFetch} from '@/sanity/lib/live'
 import {ARTICLES_PAGE_QUERY} from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
@@ -68,10 +68,11 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
   const requestedType = firstParam(params.type) ?? ''
   const articleType = allowedArticleTypes.has(requestedType) ? requestedType : ''
   const authorSlug = firstParam(params.author)?.trim() ?? ''
-  const articles = await client.fetch<ArticleArchiveItem[]>(ARTICLES_PAGE_QUERY, {
-    articleType,
-    authorSlug,
+  const {data} = await sanityFetch({
+    query: ARTICLES_PAGE_QUERY,
+    params: {articleType, authorSlug},
   })
+  const articles = data as ArticleArchiveItem[]
 
   return (
     <main id="main-content" className="site-container articles-page">

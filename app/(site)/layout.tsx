@@ -1,5 +1,6 @@
 import {Footer} from '@/app/components/Footer'
 import {Header} from '@/app/components/Header'
+import {SanityLive} from '@/sanity/lib/live'
 
 export default function SiteLayout({children}: LayoutProps<'/'>) {
   return (
@@ -12,6 +13,7 @@ export default function SiteLayout({children}: LayoutProps<'/'>) {
         {children}
         <Footer />
       </div>
+      <SanityLive />
     </>
   )
 }

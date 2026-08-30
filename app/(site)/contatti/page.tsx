@@ -1,6 +1,6 @@
 import type {Metadata} from 'next'
 
-import {client} from '@/sanity/lib/client'
+import {sanityFetch} from '@/sanity/lib/live'
 import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
@@ -38,9 +38,8 @@ const inquiries = [
 ]
 
 export default async function ContattiPage() {
-  const settings = await client
-    .fetch<ContactSettings | null>(SITE_SETTINGS_QUERY)
-    .catch(() => null)
+  const {data} = await sanityFetch({query: SITE_SETTINGS_QUERY}).catch(() => ({data: null}))
+  const settings = data as ContactSettings | null
   const contactEmail = settings?.contactEmail?.trim() || null
 
   return (

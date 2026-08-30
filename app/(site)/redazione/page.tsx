@@ -3,8 +3,8 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {client} from '@/sanity/lib/client'
 import {urlFor} from '@/sanity/lib/image'
+import {sanityFetch} from '@/sanity/lib/live'
 import {EDITORIAL_TEAM_ASSETS_QUERY} from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
@@ -68,9 +68,11 @@ function MemberName({member, asset}: {member: RosterMember; asset?: AuthorAsset}
 }
 
 export default async function RedazionePage() {
-  const authorAssets = await client.fetch<AuthorAsset[]>(EDITORIAL_TEAM_ASSETS_QUERY, {
-    names: editorialNames,
+  const {data} = await sanityFetch({
+    query: EDITORIAL_TEAM_ASSETS_QUERY,
+    params: {names: editorialNames},
   })
+  const authorAssets = data as AuthorAsset[]
   const assetsByName = new Map(
     authorAssets.flatMap((author) => (author.name ? [[author.name, author] as const] : [])),
   )
