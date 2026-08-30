@@ -115,10 +115,58 @@ export const EDITORIAL_TEAM_QUERY = defineQuery(/* groq */ `
   }
 `)
 
+export const EDITORIAL_TEAM_ASSETS_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "author" &&
+    name in $names
+  ] {
+    _id,
+    name,
+    "slug": slug.current,
+    role,
+    bio,
+    "photo": select(
+      defined(photo.asset._ref) => photo {
+        asset,
+        crop,
+        hotspot,
+        alt
+      },
+      null
+    )
+  }
+`)
+
 export const SITE_SETTINGS_QUERY = defineQuery(/* groq */ `
   *[_type == "siteSettings"] | order(_updatedAt desc, _id asc)[0] {
     contactEmail,
     instagramUrl,
     footerText
+  }
+`)
+
+export const ARTICLES_PAGE_QUERY = defineQuery(/* groq */ `
+  *[
+    _type == "article" &&
+    defined(publishedAt) &&
+    publishedAt <= now() &&
+    ($articleType == "" || articleType == $articleType) &&
+    ($authorSlug == "" || author->slug.current == $authorSlug)
+  ] | order(publishedAt desc, _id asc)[0...24] {
+    ${articleSummaryFields},
+    excerpt,
+    author->{
+      name,
+      "slug": slug.current
+    },
+    "coverImage": select(
+      defined(coverImage.asset._ref) => coverImage {
+        asset,
+        crop,
+        hotspot,
+        alt
+      },
+      null
+    )
   }
 `)
