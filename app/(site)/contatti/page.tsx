@@ -20,7 +20,7 @@ const inquiries = [
     number: '02',
     title: 'Festival e rassegne',
     description:
-      'Segnalazioni, accrediti, incontri e collaborazioni con festival, sale e progetti culturali.',
+      'Reportage e collaborazioni con festival, sale e progetti culturali.',
     subject: 'Festival e rassegne',
   },
   {
