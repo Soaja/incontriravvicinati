@@ -53,6 +53,7 @@ const communication: RosterMember[] = [
   {role: 'Comunicazione / Social', name: 'Ludovica Romeo'},
   {role: 'Comunicazione / Social', name: 'Angelica Salerno'},
   {role: 'Comunicazione / Social', name: 'Francesca Suman'},
+  {role: 'Comunicazione / Social', name: 'Simone Sgambetterra'},
 ]
 
 const editorialNames = [...direction, ...artDirection, ...editors, ...communication].map(

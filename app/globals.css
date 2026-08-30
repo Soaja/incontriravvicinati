@@ -1284,6 +1284,20 @@ a:focus-visible {
   color: var(--color-paper);
 }
 
+.contact-direct__phone {
+  display: block;
+  width: fit-content;
+  margin-top: var(--space-4);
+  color: var(--color-paper);
+  font: 650 clamp(1rem, 2vw, 1.4rem)/1.2 var(--font-data);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.contact-direct__phone:hover {
+  color: var(--color-accent);
+}
+
 .contact-direct__email--missing {
   color: var(--color-paper);
 }

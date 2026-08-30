@@ -1,20 +1,18 @@
 import Link from 'next/link'
 
+import {contactDetails} from '@/app/lib/contact'
 import {sanityFetch} from '@/sanity/lib/live'
 import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 import {BrandLogo} from './BrandLogo'
 
 type SiteSettings = {
-  contactEmail: string | null
-  instagramUrl: string | null
   footerText: string | null
 }
 
 export async function Footer() {
   const {data} = await sanityFetch({query: SITE_SETTINGS_QUERY}).catch(() => ({data: null}))
   const settings = data as SiteSettings | null
-  const contactEmail = settings?.contactEmail?.trim() || null
 
   return (
     <footer className="site-footer">
@@ -37,25 +35,18 @@ export async function Footer() {
                 storia da raccontare, questo è il posto giusto da cui iniziare.
               </p>
 
-              {contactEmail ? (
-                <a className="site-contact__email" href={`mailto:${contactEmail}`}>
-                  {contactEmail}
-                </a>
-              ) : (
-                <Link className="site-contact__email" href="/contatti">
-                  Scrivici
-                </Link>
-              )}
+              <a className="site-contact__email" href={`mailto:${contactDetails.email}`}>
+                {contactDetails.email}
+              </a>
 
               <div className="site-contact__links type-meta">
+                <a href={contactDetails.phoneHref}>{contactDetails.phoneDisplay}</a>
                 <Link href="/contatti">
                   Contatti <span aria-hidden="true">↗</span>
                 </Link>
-                {settings?.instagramUrl ? (
-                  <a href={settings.instagramUrl} target="_blank" rel="noreferrer">
-                    Instagram <span aria-hidden="true">↗</span>
-                  </a>
-                ) : null}
+                <a href={contactDetails.instagramUrl} target="_blank" rel="noreferrer">
+                  {contactDetails.instagramHandle} <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </div>
           </div>

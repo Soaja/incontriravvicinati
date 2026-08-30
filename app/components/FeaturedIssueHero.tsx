@@ -35,6 +35,9 @@ export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
     : 'Data non disponibile'
   const issueLabel =
     issue.issueNumber !== null ? `N. ${String(issue.issueNumber).padStart(2, '0')}` : 'Numero'
+  const pdfDownloadUrl = issue.pdfUrl
+    ? `${issue.pdfUrl}?dl=${encodeURIComponent('Incontri-Ravvicinati-n00.pdf')}`
+    : null
 
   return (
     <section className="issue-hero" aria-labelledby="featured-issue-title">
@@ -77,13 +80,10 @@ export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
             </p>
           </div>
 
-          {issue.pdfUrl ? (
+          {pdfDownloadUrl ? (
             <a
               className="issue-hero__download type-meta"
-              href={issue.pdfUrl}
-              target="_blank"
-              rel="noreferrer"
-              download
+              href={pdfDownloadUrl}
             >
               Scarica PDF <span aria-hidden="true">↓</span>
             </a>

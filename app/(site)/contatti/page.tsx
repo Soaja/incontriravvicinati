@@ -1,16 +1,10 @@
 import type {Metadata} from 'next'
 
-import {sanityFetch} from '@/sanity/lib/live'
-import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
+import {contactDetails} from '@/app/lib/contact'
 
 export const metadata: Metadata = {
   title: 'Contatti',
   description: 'Contatta Incontri Ravvicinati.',
-}
-
-type ContactSettings = {
-  contactEmail: string | null
-  instagramUrl: string | null
 }
 
 const inquiries = [
@@ -38,10 +32,6 @@ const inquiries = [
 ]
 
 export default async function ContattiPage() {
-  const {data} = await sanityFetch({query: SITE_SETTINGS_QUERY}).catch(() => ({data: null}))
-  const settings = data as ContactSettings | null
-  const contactEmail = settings?.contactEmail?.trim() || null
-
   return (
     <main id="main-content" className="site-container contact-page">
       <header className="contact-hero">
@@ -65,31 +55,27 @@ export default async function ContattiPage() {
 
         <h2 id="contact-direct-heading">Scrivici</h2>
 
-        {contactEmail ? (
-          <a className="contact-direct__email" href={`mailto:${contactEmail}`}>
-            {contactEmail}
-          </a>
-        ) : (
-          <p className="contact-direct__email contact-direct__email--missing">
-            Email in aggiornamento
-          </p>
-        )}
+        <a className="contact-direct__email" href={`mailto:${contactDetails.email}`}>
+          {contactDetails.email}
+        </a>
+
+        <a className="contact-direct__phone" href={contactDetails.phoneHref}>
+          {contactDetails.phoneDisplay}
+        </a>
 
         <div className="contact-direct__footer">
           <p>
             Raccontaci chi sei, cosa immagini e perché pensi che il tuo progetto possa
             incontrare Incontri Ravvicinati.
           </p>
-          {settings?.instagramUrl ? (
-            <a
-              className="contact-direct__instagram type-meta"
-              href={settings.instagramUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram <span aria-hidden="true">↗</span>
-            </a>
-          ) : null}
+          <a
+            className="contact-direct__instagram type-meta"
+            href={contactDetails.instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram {contactDetails.instagramHandle} <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
 
@@ -101,20 +87,18 @@ export default async function ContattiPage() {
 
         <div className="contact-inquiries__list">
           {inquiries.map((inquiry) => {
-            const subjectHref = contactEmail
-              ? `mailto:${contactEmail}?subject=${encodeURIComponent(inquiry.subject)}`
-              : null
+            const subjectHref = `mailto:${contactDetails.email}?subject=${encodeURIComponent(
+              inquiry.subject,
+            )}`
 
             return (
               <article key={inquiry.number} className="contact-inquiry">
                 <span aria-hidden="true">{inquiry.number}</span>
                 <h3>{inquiry.title}</h3>
                 <p>{inquiry.description}</p>
-                {subjectHref ? (
-                  <a className="contact-inquiry__link type-meta" href={subjectHref}>
-                    Scrivi ora <span aria-hidden="true">↗</span>
-                  </a>
-                ) : null}
+                <a className="contact-inquiry__link type-meta" href={subjectHref}>
+                  Scrivi ora <span aria-hidden="true">↗</span>
+                </a>
               </article>
             )
           })}
