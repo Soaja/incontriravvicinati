@@ -5,6 +5,7 @@ import {sanityFetch} from '@/sanity/lib/live'
 import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 import {BrandLogo} from './BrandLogo'
+import {ArrowIcon} from './ArrowIcon'
 
 type SiteSettings = {
   footerText: string | null
@@ -42,10 +43,10 @@ export async function Footer() {
               <div className="site-contact__links type-meta">
                 <a href={contactDetails.phoneHref}>{contactDetails.phoneDisplay}</a>
                 <Link href="/contatti">
-                  Contatti <span aria-hidden="true">↗</span>
+                  Contatti <ArrowIcon />
                 </Link>
                 <a href={contactDetails.instagramUrl} target="_blank" rel="noreferrer">
-                  {contactDetails.instagramHandle} <span aria-hidden="true">↗</span>
+                  {contactDetails.instagramHandle} <ArrowIcon />
                 </a>
               </div>
             </div>

@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import {ArrowIcon} from './ArrowIcon'
+
 export function SloganSection() {
   return (
     <section className="slogan-section" aria-labelledby="slogan-heading">
@@ -28,7 +30,7 @@ export function SloganSection() {
         <div className="slogan-section__footer">
           <p className="type-meta">Cinema, cultura visiva, tempo per guardare.</p>
           <Link className="slogan-section__cta type-meta" href="/chi-siamo">
-            Scopri chi siamo <span aria-hidden="true">↗</span>
+            Scopri chi siamo <ArrowIcon />
           </Link>
         </div>
       </div>

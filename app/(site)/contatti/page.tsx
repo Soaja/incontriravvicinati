@@ -1,5 +1,6 @@
 import type {Metadata} from 'next'
 
+import {ArrowIcon} from '@/app/components/ArrowIcon'
 import {contactDetails} from '@/app/lib/contact'
 
 export const metadata: Metadata = {
@@ -74,7 +75,7 @@ export default async function ContattiPage() {
             target="_blank"
             rel="noreferrer"
           >
-            Instagram {contactDetails.instagramHandle} <span aria-hidden="true">↗</span>
+            Instagram {contactDetails.instagramHandle} <ArrowIcon />
           </a>
         </div>
       </section>
@@ -97,7 +98,7 @@ export default async function ContattiPage() {
                 <h3>{inquiry.title}</h3>
                 <p>{inquiry.description}</p>
                 <a className="contact-inquiry__link type-meta" href={subjectHref}>
-                  Scrivi ora <span aria-hidden="true">↗</span>
+                  Scrivi ora <ArrowIcon />
                 </a>
               </article>
             )

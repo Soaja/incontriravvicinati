@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import {urlFor} from '@/sanity/lib/image'
 
+import {ArrowIcon} from './ArrowIcon'
+
 export type ReviewArticle = {
   _id: string
   title: string | null
@@ -47,7 +49,7 @@ export function ReviewsSection({reviews}: ReviewsSectionProps) {
       <header className="reviews-section__header">
         <h2 id="reviews-heading">Recensioni</h2>
         <Link className="reviews-section__all type-meta" href="/articoli?type=recensione">
-          Vedi tutte <span aria-hidden="true">↗</span>
+          Vedi tutte <ArrowIcon />
         </Link>
       </header>
 

@@ -3,6 +3,8 @@ import Image from 'next/image'
 
 import {urlFor} from '@/sanity/lib/image'
 
+import {ArrowIcon} from './ArrowIcon'
+
 export type FeaturedIssue = {
   _id: string
   title: string | null
@@ -85,7 +87,7 @@ export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
               className="issue-hero__download type-meta"
               href={pdfDownloadUrl}
             >
-              Scarica PDF <span aria-hidden="true">↓</span>
+              Scarica PDF <ArrowIcon direction="down" />
             </a>
           ) : (
             <p className="issue-hero__pdf-missing type-meta">PDF non disponibile</p>

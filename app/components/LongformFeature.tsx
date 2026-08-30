@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import {urlFor} from '@/sanity/lib/image'
 
+import {ArrowIcon} from './ArrowIcon'
+
 export type LongformArticle = {
   _id: string
   title: string | null
@@ -100,7 +102,7 @@ export function LongformFeature({article}: LongformFeatureProps) {
           <p className="longform-feature__meta type-meta">{longformMeta(article)}</p>
           {articleHref ? (
             <Link className="longform-feature__link type-meta" href={articleHref}>
-              Leggi l’articolo <span aria-hidden="true">↗</span>
+              Leggi l’articolo <ArrowIcon />
             </Link>
           ) : null}
         </div>

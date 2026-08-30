@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import homepageHeroImage from '@/public/editorial/homepage-hero.png'
 
+import {ArrowIcon} from './ArrowIcon'
+
 type FeaturedHeroProps = {
   article: {
     title: string | null
@@ -60,7 +62,7 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
             <p className="type-meta">{meta}</p>
             {articleHref ? (
               <Link className="featured-hero__link type-meta" href={articleHref}>
-                Leggi l’articolo <span aria-hidden="true">↗</span>
+                Leggi l’articolo <ArrowIcon />
               </Link>
             ) : null}
           </div>

@@ -1,6 +1,8 @@
 import type {Metadata} from 'next'
 import Link from 'next/link'
 
+import {ArrowIcon} from '@/app/components/ArrowIcon'
+
 export const metadata: Metadata = {
   title: 'Chi siamo',
   description: 'Il progetto editoriale di Incontri Ravvicinati.',
@@ -94,7 +96,7 @@ export default function ChiSiamoPage() {
           Scopri chi c&apos;è dietro Incontri Ravvicinati
         </h2>
         <Link className="about-editorial-cta__link type-meta" href="/redazione">
-          La redazione <span aria-hidden="true">↗</span>
+          La redazione <ArrowIcon />
         </Link>
       </section>
     </main>

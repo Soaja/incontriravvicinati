@@ -2,6 +2,7 @@ import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {ArrowIcon} from '@/app/components/ArrowIcon'
 import {FeaturedIssueHero, type FeaturedIssue} from '@/app/components/FeaturedIssueHero'
 import {LongformFeature, type LongformArticle} from '@/app/components/LongformFeature'
 import {ReviewsSection, type ReviewArticle} from '@/app/components/ReviewsSection'
@@ -68,7 +69,7 @@ export default async function Home() {
         <header className="latest-articles__header">
           <h2 id="latest-heading">Ultimi articoli</h2>
           <Link className="latest-articles__all type-meta" href="/articoli">
-            Vedi tutti <span aria-hidden="true">↗</span>
+            Vedi tutti <ArrowIcon />
           </Link>
         </header>
 

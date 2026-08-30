@@ -3,6 +3,7 @@ import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {ArrowIcon} from '@/app/components/ArrowIcon'
 import {ArticleFilters} from '@/app/components/ArticleFilters'
 import {urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -198,7 +199,7 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
             <p className="type-meta">Nessun risultato</p>
             <p>Non ci sono ancora articoli pubblicati per questo filtro.</p>
             <Link className="type-meta" href="/articoli">
-              Torna a tutti gli articoli ↗
+              Torna a tutti gli articoli <ArrowIcon />
             </Link>
           </div>
         )}

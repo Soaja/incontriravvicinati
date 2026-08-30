@@ -2,6 +2,8 @@ import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import {ArrowIcon} from '@/app/components/ArrowIcon'
 import {notFound} from 'next/navigation'
 import type {PortableTextBlock} from 'next-sanity'
 
@@ -266,7 +268,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
         <header className="related-articles__header">
           <h2 id="related-heading">Altri articoli</h2>
           <Link className="type-meta" href="/articoli">
-            Tutti gli articoli <span aria-hidden="true">↗</span>
+            Tutti gli articoli <ArrowIcon />
           </Link>
         </header>
 
@@ -313,7 +315,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
         ) : null}
 
         <Link className="article-back-link type-meta" href="/articoli">
-          <span aria-hidden="true">←</span> Torna agli articoli
+          <ArrowIcon direction="left" /> Torna agli articoli
         </Link>
       </section>
 

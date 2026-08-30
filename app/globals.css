@@ -61,6 +61,24 @@ a {
   text-underline-offset: 0.2em;
 }
 
+.link-arrow {
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  flex: 0 0 auto;
+  margin-inline-start: 0.35em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.5;
+  vertical-align: -0.12em;
+}
+
+.link-arrow--left {
+  margin-inline: 0 0.35em;
+}
+
 a:focus-visible {
   outline: 3px solid currentColor;
   outline-offset: 4px;
@@ -1271,13 +1289,13 @@ a:focus-visible {
   padding-block: clamp(1rem, 2vw, 2rem);
   color: var(--color-accent);
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 7vw, 7rem);
+  font-size: clamp(1rem, 4.8vw, 4.75rem);
   font-weight: 850;
   line-height: 0.88;
   letter-spacing: -0.06em;
   text-decoration: none;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .contact-direct__email:hover {
@@ -2718,13 +2736,13 @@ a:focus-visible {
   border-block: 1px solid currentColor;
   padding-block: var(--space-4);
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-size: clamp(0.85rem, 2.1vw, 2rem);
   font-weight: 850;
   line-height: 0.9;
   letter-spacing: -0.055em;
   text-decoration: none;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .site-contact__email:hover {
@@ -3681,7 +3699,6 @@ a:focus-visible {
   .contact-direct__email,
   .site-contact__email {
     min-height: 3.5rem;
-    font-size: clamp(1.65rem, 8vw, 2.6rem);
     line-height: 1;
   }
 
