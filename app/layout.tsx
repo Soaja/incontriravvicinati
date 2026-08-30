@@ -1,8 +1,6 @@
 import type {Metadata} from 'next'
 import {Geist, Jura} from 'next/font/google'
 
-import {Footer} from './components/Footer'
-import {Header} from './components/Header'
 import './globals.css'
 
 const geistSans = Geist({
@@ -27,16 +25,7 @@ export default function RootLayout({children}: LayoutProps<'/'>) {
       lang="it"
       className={`${geistSans.variable} ${jura.variable} h-full antialiased`}
     >
-      <body>
-        <a className="skip-link" href="#main-content">
-          Vai al contenuto
-        </a>
-        <div className="site-shell">
-          <Header />
-          {children}
-          <Footer />
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
