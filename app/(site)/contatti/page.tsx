@@ -13,7 +13,7 @@ const inquiries = [
     number: '01',
     title: 'Proposte editoriali',
     description:
-      'Articoli, interviste, recensioni e idee che attraversano il cinema e la cultura delle immagini.',
+      'Analisi, retrospettive e idee che attraversano il cinema e la cultura delle immagini.',
     subject: 'Proposta editoriale',
   },
   {

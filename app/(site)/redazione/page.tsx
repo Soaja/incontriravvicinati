@@ -68,6 +68,22 @@ function MemberName({member, asset}: {member: RosterMember; asset?: AuthorAsset}
   )
 }
 
+function SocialMemberName({member, asset}: {member: RosterMember; asset?: AuthorAsset}) {
+  const [firstName, ...surnameParts] = member.name.split(' ')
+  const name = (
+    <>
+      <span className="social-member-name__line">{firstName}</span>
+      <span className="social-member-name__line">{surnameParts.join(' ')}</span>
+    </>
+  )
+
+  return asset?.slug ? (
+    <Link href={`/articoli?author=${encodeURIComponent(asset.slug)}`}>{name}</Link>
+  ) : (
+    name
+  )
+}
+
 export default async function RedazionePage() {
   const {data} = await sanityFetch({
     query: EDITORIAL_TEAM_ASSETS_QUERY,
@@ -196,7 +212,7 @@ export default async function RedazionePage() {
               <li key={member.name}>
                 <span aria-hidden="true">S/{String(index + 1).padStart(2, '0')}</span>
                 <h3>
-                  <MemberName member={member} asset={asset} />
+                  <SocialMemberName member={member} asset={asset} />
                 </h3>
                 <p className="type-meta">{member.role}</p>
               </li>
