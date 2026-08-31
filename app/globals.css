@@ -680,30 +680,19 @@ a:focus-visible {
   overflow-wrap: break-word;
 }
 
-.slogan-section__line--small {
-  margin: 0 0 var(--space-3);
-  padding-right: 0.08em;
-  color: var(--slogan-accent);
-  font-family: var(--font-data);
-  font-size: 0.24em;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-align: right;
+.slogan-section__line--opening {
+  display: flex;
+  align-items: baseline;
+  gap: 0.14em;
+  white-space: nowrap;
 }
 
-.slogan-section__line--expressive,
 .slogan-section__word--expressive {
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.09em;
   text-transform: none;
-}
-
-.slogan-section__line--expressive {
-  font-size: 1.08em;
-  line-height: 0.7;
 }
 
 .slogan-section__footer {

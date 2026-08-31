@@ -14,8 +14,10 @@ export function SloganSection() {
         <h2 id="slogan-heading" className="slogan-section__title">
           <span className="sr-only">Il cinema si racconta meglio se ci si prende del tempo.</span>
           <span aria-hidden="true">
-            <span className="slogan-section__line slogan-section__line--small">Il</span>
-            <span className="slogan-section__line slogan-section__line--expressive">Cinema</span>
+            <span className="slogan-section__line slogan-section__line--opening">
+              <span>Il</span>
+              <span className="slogan-section__word--expressive">Cinema</span>
+            </span>
             <span className="slogan-section__line">si racconta</span>
             <span className="slogan-section__line">
               <span className="slogan-section__word--expressive">meglio</span> se
