@@ -89,7 +89,7 @@ const articleTypeLabels: Record<string, string> = {
   retrospettiva: 'Retrospettiva',
   news: 'News',
   reportage: 'Reportage',
-  selezione: 'Selezione',
+  selezione: 'Altri articoli',
 }
 
 const dateFormatter = new Intl.DateTimeFormat('it-IT', {

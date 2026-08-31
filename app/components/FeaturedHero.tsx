@@ -37,7 +37,11 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
 
       <article className="featured-hero__layout">
         <div className="featured-hero__intro">
-          {article.articleType ? <p className="type-meta">{article.articleType}</p> : null}
+          {article.articleType ? (
+            <p className="type-meta">
+              {article.articleType === 'selezione' ? 'Altri articoli' : article.articleType}
+            </p>
+          ) : null}
           <h2 id="featured-article-title" className="featured-hero__title">
             {articleHref ? <Link href={articleHref}>{article.title}</Link> : article.title}
           </h2>

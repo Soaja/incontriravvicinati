@@ -52,6 +52,10 @@ function articleMeta(article: ArticleSummary) {
   return parts.join(' · ')
 }
 
+function articleTypeLabel(value: string | null) {
+  return value === 'selezione' ? 'Altri articoli' : (value ?? 'Articolo')
+}
+
 export default async function Home() {
   const [homepageResult, featuredIssueResult] = await Promise.all([
     sanityFetch({query: HOMEPAGE_QUERY}),
@@ -101,7 +105,7 @@ export default async function Home() {
               return (
                 <article key={article._id} className="latest-article">
                   <div className="latest-article__label">
-                    <p className="type-meta">{article.articleType ?? 'Articolo'}</p>
+                    <p className="type-meta">{articleTypeLabel(article.articleType)}</p>
                     <span aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
                   </div>
 
