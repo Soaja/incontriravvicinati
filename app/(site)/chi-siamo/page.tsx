@@ -36,7 +36,11 @@ export default function ChiSiamoPage() {
         </div>
 
         <h1>Chi siamo</h1>
-        <p className="about-hero__intro">Dove sguardi diversi si incontrano</p>
+        <p className="about-hero__intro">
+          Incontri Ravvicinati è un progetto editoriale indipendente dedicato al cinema e al
+          mondo dell&apos;audiovisivo. Uno spazio di condivisione dove sguardi diversi si
+          incontrano.
+        </p>
       </header>
 
       <section className="about-definition" aria-labelledby="about-definition-heading">
