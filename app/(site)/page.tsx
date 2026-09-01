@@ -79,7 +79,8 @@ export default async function Home() {
 
         {latestArticles.length > 0 ? (
           <div className="latest-articles__grid">
-            {latestArticles.map((article, index) => {
+            {(() => {
+              const cards = latestArticles.map((article, index) => {
               const articleHref = article.slug ? `/articoli/${article.slug}` : null
               const articleTitle = article.title ?? 'Titolo non disponibile'
               const coverImage = article.coverImage ? (
@@ -103,7 +104,10 @@ export default async function Home() {
               ) : null
 
               return (
-                <article key={article._id} className="latest-article">
+                <article
+                  key={article._id}
+                  className={`latest-article latest-article--${index + 1}`}
+                >
                   <div className="latest-article__label">
                     <p className="type-meta">{articleTypeLabel(article.articleType)}</p>
                     <span aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
@@ -129,7 +133,16 @@ export default async function Home() {
                   <p className="latest-article__meta type-meta">{articleMeta(article)}</p>
                 </article>
               )
-            })}
+              })
+
+              return (
+                <>
+                  {cards[0]}
+                  <div className="latest-articles__side">{cards.slice(1, 3)}</div>
+                  {cards.slice(3)}
+                </>
+              )
+            })()}
           </div>
         ) : (
           <p className="latest-articles__empty">Nessun articolo pubblicato.</p>
