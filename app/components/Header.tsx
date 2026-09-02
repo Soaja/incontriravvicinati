@@ -45,7 +45,7 @@ export function Header() {
     <header className="site-header">
       <div className="site-container">
         <div className="site-header__utility">
-          <p className="type-meta">Cinema indipendente · Cultura visiva</p>
+          <p className="type-meta">Cinema . Cultura visiva</p>
           <nav className="site-nav-shell" aria-label="Navigazione principale">
             <ul className="site-nav" ref={navigationRef} onScroll={updateScrollState}>
               {navigation.map((item) => (

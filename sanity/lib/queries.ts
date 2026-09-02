@@ -16,7 +16,7 @@ export const HOMEPAGE_QUERY = defineQuery(/* groq */ `
       _type == "article" &&
       defined(publishedAt) &&
       publishedAt <= now()
-    ] | order(publishedAt desc, _id asc)[0...6] {
+    ] | order(publishedAt desc, _id asc)[0...3] {
       ${articleSummaryFields},
       "coverImage": select(
         defined(coverImage.asset._ref) => coverImage {

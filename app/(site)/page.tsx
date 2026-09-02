@@ -80,7 +80,7 @@ export default async function Home() {
         {latestArticles.length > 0 ? (
           <div className="latest-articles__grid">
             {(() => {
-              const cards = latestArticles.map((article, index) => {
+              const cards = latestArticles.slice(0, 3).map((article, index) => {
               const articleHref = article.slug ? `/articoli/${article.slug}` : null
               const articleTitle = article.title ?? 'Titolo non disponibile'
               const coverImage = article.coverImage ? (
@@ -139,7 +139,6 @@ export default async function Home() {
                 <>
                   {cards[0]}
                   <div className="latest-articles__side">{cards.slice(1, 3)}</div>
-                  {cards.slice(3)}
                 </>
               )
             })()}
