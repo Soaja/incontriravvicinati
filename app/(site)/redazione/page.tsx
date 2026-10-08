@@ -1,9 +1,8 @@
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 
-import {urlFor} from '@/sanity/lib/image'
+import {AuthorPhoto} from '@/app/components/AuthorPhoto'
 import {sanityFetch} from '@/sanity/lib/live'
 import {EDITORIAL_TEAM_ASSETS_QUERY} from '@/sanity/lib/queries'
 
@@ -127,7 +126,8 @@ export default async function RedazionePage() {
               <article key={member.name} className="direction-member">
                 <span aria-hidden="true">0{index + 1}</span>
                 <p className="type-meta">{member.role}</p>
-                <h3>
+                <h3 className="masthead-name">
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
                   <MemberName member={member} asset={asset} />
                 </h3>
                 {asset?.bio ? <p className="direction-member__bio">{asset.bio}</p> : null}
@@ -150,30 +150,17 @@ export default async function RedazionePage() {
             return (
               <article
                 key={member.name}
-                className={`art-roster-member${asset?.photo ? ' art-roster-member--with-photo' : ''}`}
+                className="art-roster-member"
               >
                 <div className="art-roster-member__label">
                   <p className="type-meta">{member.role}</p>
                   <span aria-hidden="true">A/{String(index + 1).padStart(2, '0')}</span>
                 </div>
 
-                {asset?.photo ? (
-                  <div className="art-roster-member__portrait">
-                    <Image
-                      src={urlFor(asset.photo)
-                        .width(900)
-                        .height(1125)
-                        .fit('crop')
-                        .auto('format')
-                        .url()}
-                      alt={asset.photo.alt ?? `Ritratto di ${member.name}`}
-                      fill
-                      sizes="(max-width: 767px) 100vw, 40vw"
-                    />
-                  </div>
-                ) : null}
 
-                <h3>
+
+                <h3 className="masthead-name">
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
                   <MemberName member={member} asset={asset} />
                 </h3>
                 {asset?.bio ? <p className="art-roster-member__bio">{asset.bio}</p> : null}
@@ -197,7 +184,8 @@ export default async function RedazionePage() {
               <li key={member.name}>
                 <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <p className="type-meta">{member.role}</p>
-                <h3>
+                <h3 className="masthead-name">
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
                   <MemberName member={member} asset={asset} />
                 </h3>
               </li>
@@ -219,7 +207,8 @@ export default async function RedazionePage() {
             return (
               <li key={member.name}>
                 <span aria-hidden="true">S/{String(index + 1).padStart(2, '0')}</span>
-                <h3>
+                <h3 className="masthead-name">
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
                   <SocialMemberName member={member} asset={asset} />
                 </h3>
                 <p className="type-meta">{member.role}</p>

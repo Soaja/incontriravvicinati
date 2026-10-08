@@ -2,11 +2,13 @@ import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import {PortableText, type PortableTextBlock, type PortableTextComponents} from 'next-sanity'
 
-import {getSanityImageUrl, hasValidImageReference} from '@/sanity/lib/image'
+import {getSanityImageUrl, hasValidImageReference, imageDimensions} from '@/sanity/lib/image'
 
 type ArticleBodyImage = SanityImageSource & {
   alt?: string | null
   caption?: string | null
+  credit?: string | null
+  fullWidth?: boolean | null
   asset?: {
     metadata?: {
       dimensions?: {width?: number; height?: number}
@@ -26,8 +28,7 @@ function BodyImage({value}: {value: ArticleBodyImage}) {
     return null
   }
 
-  const width = asset.metadata?.dimensions?.width ?? 1200
-  const height = asset.metadata?.dimensions?.height ?? 800
+  const {width, height} = imageDimensions(value)
   const lqip = asset.metadata?.lqip
   const imageUrl = getSanityImageUrl(value, (imageBuilder) =>
     imageBuilder.width(1400).auto('format').url(),
@@ -38,17 +39,21 @@ function BodyImage({value}: {value: ArticleBodyImage}) {
   }
 
   return (
-    <figure className="article-body__figure">
+    <figure className={`article-body__figure${value.fullWidth ? ' article-body__figure--full-width' : ''}`}>
       <Image
         src={imageUrl}
         alt={value.alt ?? ''}
         width={width}
         height={height}
-        sizes="(max-width: 767px) 100vw, 760px"
+        sizes={value.fullWidth ? '(max-width: 767px) 100vw, 1200px' : '(max-width: 767px) 100vw, 740px'}
+        loading="lazy"
         placeholder={lqip ? 'blur' : 'empty'}
         blurDataURL={lqip}
       />
-      {value.caption ? <figcaption>{value.caption}</figcaption> : null}
+      {value.caption || value.credit ? <figcaption>
+        {value.caption ? <span>{value.caption}</span> : null}
+        {value.credit ? <span className="article-body__credit">Foto: {value.credit}</span> : null}
+      </figcaption> : null}
     </figure>
   )
 }

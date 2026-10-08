@@ -1,5 +1,12 @@
 import {defineQuery} from 'next-sanity'
 
+const articlePeopleFields = /* groq */ `
+  author->{_id, name, "slug": slug.current, role, bio, photo{asset->{_id, url, metadata{dimensions, lqip}}, crop, hotspot, alt}},
+  "authors": array::compact([author, ...coalesce(authors, [])])[]->{
+    _id, name, "slug": slug.current, role, bio, photo{asset->{_id, url, metadata{dimensions, lqip}}, crop, hotspot, alt}
+  }
+`
+
 const articleSummaryFields = /* groq */ `
   _id,
   title,
@@ -7,7 +14,8 @@ const articleSummaryFields = /* groq */ `
   articleType,
   publishedAt,
   readingTime,
-  author->{name}
+  rubrica->{title, "slug": slug.current},
+  ${articlePeopleFields}
 `
 
 export const HOMEPAGE_QUERY = defineQuery(/* groq */ `
@@ -105,7 +113,7 @@ export const EDITORIAL_TEAM_QUERY = defineQuery(/* groq */ `
     order,
     "photo": select(
       defined(photo.asset._ref) => photo {
-        asset,
+        asset->{_id, url, metadata{dimensions, lqip}},
         crop,
         hotspot,
         alt
@@ -126,7 +134,7 @@ export const EDITORIAL_TEAM_ASSETS_QUERY = defineQuery(/* groq */ `
     bio,
     "photo": select(
       defined(photo.asset._ref) => photo {
-        asset,
+        asset->{_id, url, metadata{dimensions, lqip}},
         crop,
         hotspot,
         alt
@@ -150,14 +158,12 @@ export const ARTICLES_PAGE_QUERY = defineQuery(/* groq */ `
     defined(publishedAt) &&
     publishedAt <= now() &&
     ($articleType == "" || articleType == $articleType) &&
-    ($authorSlug == "" || author->slug.current == $authorSlug || author._ref == $authorSlug)
+    ($authorSlug == "" || author->slug.current == $authorSlug || author._ref == $authorSlug ||
+      count(authors[@._ref == $authorSlug || @->slug.current == $authorSlug]) > 0) &&
+    ($rubricaSlug == "" || rubrica->slug.current == $rubricaSlug)
   ] | order(publishedAt desc, _id asc)[0...24] {
     ${articleSummaryFields},
     excerpt,
-    author->{
-      name,
-      "slug": slug.current
-    },
     "coverImage": select(
       defined(coverImage.asset._ref) => coverImage {
         asset,
@@ -201,7 +207,7 @@ export const ARTICLE_METADATA_QUERY = defineQuery(/* groq */ `
     title,
     excerpt,
     publishedAt,
-    author->{name},
+    ${articlePeopleFields},
     "coverImage": select(
       defined(coverImage.asset._ref) => coverImage {
         asset,
@@ -232,7 +238,7 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
       tags,
       "coverImage": select(
         defined(coverImage.asset._ref) => coverImage {
-          asset->{metadata{dimensions, lqip}},
+          asset->{_id, url, metadata{dimensions, lqip}},
           crop,
           hotspot,
           alt,
@@ -243,28 +249,17 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
       body[]{
         ...,
         _type == "image" => {
-          asset->{metadata{dimensions, lqip}},
+          asset->{_id, url, metadata{dimensions, lqip}},
           crop,
           hotspot,
           alt,
-          caption
+          caption,
+          credit,
+          fullWidth
         }
       },
-      author->{
-        name,
-        "slug": slug.current,
-        role,
-        bio,
-        "photo": select(
-          defined(photo.asset._ref) => photo {
-            asset->{metadata{dimensions, lqip}},
-            crop,
-            hotspot,
-            alt
-          },
-          null
-        )
-      },
+      rubrica->{title, "slug": slug.current},
+      ${articlePeopleFields},
       "issue": *[
         _type == "issue" &&
         references(^._id)
@@ -291,5 +286,19 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
         null
       )
     }
+  }
+`)
+
+export const SECTION_ORDER_QUERY = defineQuery(/* groq */ `
+  *[_type == "sectionSettings" && _id == "sectionSettings"][0]{"order": order[].section}
+`)
+
+export const RUBRICA_QUERY = defineQuery(/* groq */ `
+  *[_type == "rubrica" && slug.current == $slug][0]{title, "slug": slug.current, description}
+`)
+
+export const AUTHOR_QUERY = defineQuery(/* groq */ `
+  *[_type == "author" && (slug.current == $slug || _id == $slug)][0]{
+    _id, name, "slug": slug.current, role, bio, photo{asset->{_id, url, metadata{dimensions, lqip}}, crop, hotspot, alt}
   }
 `)

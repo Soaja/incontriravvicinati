@@ -1,82 +1,39 @@
-import {ArticleTitle} from '@/app/components/ArticleTitle'
-import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-
-import {ArrowIcon} from '@/app/components/ArrowIcon'
+import {permanentRedirect} from 'next/navigation'
 import {ArticleFilters} from '@/app/components/ArticleFilters'
-import {urlFor} from '@/sanity/lib/image'
+import {ArticleList, type ArticleListItem} from '@/app/components/ArticleList'
+import {AuthorPhoto} from '@/app/components/AuthorPhoto'
+import type {Author} from '@/app/components/AuthorLinks'
+import {orderedSections, sections} from '@/app/lib/sections'
 import {sanityFetch} from '@/sanity/lib/live'
-import {ARTICLES_PAGE_QUERY} from '@/sanity/lib/queries'
+import {ARTICLES_PAGE_QUERY, AUTHOR_QUERY, SECTION_ORDER_QUERY} from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
-  title: 'Articoli',
-  description: 'Articoli, recensioni e approfondimenti di Incontri Ravvicinati.',
+  title: 'Articoli', description: 'Articoli, recensioni e approfondimenti di Incontri Ravvicinati.',
 }
 
-const articleTypes = [
-  {value: '', label: 'Tutti'},
-  {value: 'recensione', label: 'Recensioni'},
-  {value: 'intervista', label: 'Interviste'},
-  {value: 'approfondimento', label: 'Approfondimenti'},
-  {value: 'retrospettiva', label: 'Retrospettive'},
-  {value: 'news', label: 'News'},
-  {value: 'reportage', label: 'Reportage'},
-  {value: 'selezione', label: 'Altri articoli'},
-] as const
+type Props = {searchParams: Promise<{type?: string | string[]; author?: string | string[]}>}
+const first = (value: string | string[] | undefined) => Array.isArray(value) ? value[0] : value
 
-const allowedArticleTypes = new Set<string>(articleTypes.map(({value}) => value))
-
-type ArticleArchiveItem = {
-  _id: string
-  title: string | null
-  slug: string | null
-  excerpt: string | null
-  articleType: string | null
-  publishedAt: string | null
-  readingTime: number | null
-  author: {name: string | null; slug: string | null} | null
-  coverImage: (SanityImageSource & {alt?: string | null}) | null
-}
-
-type ArticoliPageProps = {
-  searchParams: Promise<{
-    type?: string | string[]
-    author?: string | string[]
-  }>
-}
-
-const dateFormatter = new Intl.DateTimeFormat('it-IT', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-})
-
-function firstParam(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] : value
-}
-
-function formatDate(value: string | null) {
-  return value ? dateFormatter.format(new Date(value)) : 'Data non disponibile'
-}
-
-function typeLabel(value: string | null) {
-  return articleTypes.find((type) => type.value === value)?.label ?? 'Articolo'
-}
-
-export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
+export default async function ArticoliPage({searchParams}: Props) {
   const params = await searchParams
-  const requestedType = firstParam(params.type) ?? ''
-  const articleType = allowedArticleTypes.has(requestedType) ? requestedType : ''
-  const authorSlug = firstParam(params.author)?.trim() ?? ''
-  const {data} = await sanityFetch({
-    query: ARTICLES_PAGE_QUERY,
-    params: {articleType, authorSlug},
-  })
-  const articles = data as ArticleArchiveItem[]
-
+  const requestedType = first(params.type) ?? ''
+  const authorSlug = first(params.author)?.trim() ?? ''
+  if (requestedType === 'selezione' || requestedType === 'altri-articoli') {
+    const query = new URLSearchParams({type: 'editoriali'})
+    if (authorSlug) query.set('author', authorSlug)
+    permanentRedirect('/articoli?' + query.toString())
+  }
+  const section = sections.find(section => section.slug === requestedType)
+  const [articlesResult, orderResult, authorResult] = await Promise.all([
+    sanityFetch({query: ARTICLES_PAGE_QUERY, params: {articleType: section?.value ?? '', authorSlug, rubricaSlug: ''}}),
+    sanityFetch({query: SECTION_ORDER_QUERY}),
+    authorSlug ? sanityFetch({query: AUTHOR_QUERY, params: {slug: authorSlug}}) : Promise.resolve({data: null}),
+  ])
+  const order = orderResult.data as {order?: string[] | null} | null
+  const author = authorResult.data as Author | null
+  const options = [{value: '', label: 'Tutti'}, ...orderedSections(order?.order).map(({slug, label}) => ({value: slug, label}))]
   return (
     <main id="main-content" className="site-container articles-page">
       <header className="articles-page__hero">
@@ -91,121 +48,19 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
           puntualità le dinamiche del mondo cinematografico, dentro e fuori dai set.
         </p>
       </header>
-
-      <ArticleFilters
-        options={articleTypes}
-        activeValue={articleType}
-        hasAuthorFilter={Boolean(authorSlug)}
-      />
-
-      {authorSlug ? (
-        <div className="articles-page__active-filter">
-          <p className="type-meta">Filtro autore: {authorSlug.replaceAll('-', ' ')}</p>
-          <Link className="type-meta" href="/articoli">
-            Rimuovi filtro ×
-          </Link>
+      {author ? <section className="author-profile" aria-label="Profilo autore">
+        <AuthorPhoto author={author} size={160} />
+        <div><p className="type-meta">Autore</p><h2>{author.name?.trim()}</h2>
+          {author.role ? <p className="type-meta">{author.role}</p> : null}
+          {author.bio ? <p className="type-body">{author.bio}</p> : null}
         </div>
-      ) : null}
-
-      <section className="article-archive" aria-labelledby="article-archive-heading">
-        <header className="article-archive__header">
-          <h2 id="article-archive-heading">
-            {articleType ? typeLabel(articleType) : 'Tutte le storie'}
-          </h2>
-          <p className="type-meta">
-            {articles.length} {articles.length === 1 ? 'articolo' : 'articoli'}
-          </p>
-        </header>
-
-        {articles.length > 0 ? (
-          <div className="article-archive__grid">
-            {articles.map((article, index) => {
-              const title = article.title ?? 'Titolo non disponibile'
-              const href = article.slug ? `/articoli/${article.slug}` : null
-
-              return (
-                <article
-                  key={article._id}
-                  className={`article-archive-card${
-                    article.coverImage ? '' : ' article-archive-card--no-image'
-                  }`}
-                >
-                  <div className="article-archive-card__label">
-                    <p className="type-meta">{typeLabel(article.articleType)}</p>
-                    <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                  </div>
-
-                  {article.coverImage ? (
-                    href ? (
-                      <Link
-                        className="article-archive-card__image-link"
-                        href={href}
-                        aria-label={`Leggi ${title}`}
-                      >
-                        <div className="article-archive-card__media">
-                          <Image
-                            src={urlFor(article.coverImage)
-                              .width(index === 0 ? 1400 : 900)
-                              .height(index === 1 ? 1200 : 900)
-                              .fit('crop')
-                              .auto('format')
-                              .url()}
-                            alt={article.coverImage.alt ?? title}
-                            fill
-                            priority={index === 0}
-                            sizes={
-                              index === 0
-                                ? '(max-width: 767px) 100vw, 64vw'
-                                : '(max-width: 767px) 100vw, 33vw'
-                            }
-                          />
-                        </div>
-                      </Link>
-                    ) : (
-                      <div className="article-archive-card__media">
-                      <Image
-                        src={urlFor(article.coverImage)
-                          .width(index === 0 ? 1400 : 900)
-                          .height(index === 1 ? 1200 : 900)
-                          .fit('crop')
-                          .auto('format')
-                          .url()}
-                        alt={article.coverImage.alt ?? title}
-                        fill
-                        priority={index === 0}
-                        sizes={
-                          index === 0
-                            ? '(max-width: 767px) 100vw, 64vw'
-                            : '(max-width: 767px) 100vw, 33vw'
-                        }
-                      />
-                      </div>
-                    )
-                  ) : null}
-
-                  <div className="article-archive-card__content">
-                    <h3>{href ? <Link href={href}><ArticleTitle text={title} /></Link> : <ArticleTitle text={title} />}</h3>
-                    {article.excerpt ? <p className="article-archive-card__excerpt">{article.excerpt}</p> : null}
-                    <p className="article-archive-card__meta type-meta">
-                      {article.author?.name ?? 'Autore non disponibile'} ·{' '}
-                      {formatDate(article.publishedAt)}
-                      {article.readingTime ? ` · ${article.readingTime} min di lettura` : ''}
-                    </p>
-                  </div>
-                </article>
-              )
-            })}
-          </div>
-        ) : (
-          <div className="article-archive__empty">
-            <p className="type-meta">Nessun risultato</p>
-            <p>Non ci sono ancora articoli pubblicati per questo filtro.</p>
-            <Link className="type-meta" href="/articoli">
-              Torna a tutti gli articoli <ArrowIcon />
-            </Link>
-          </div>
-        )}
-      </section>
+      </section> : null}
+      <ArticleFilters options={options} activeValue={section?.slug ?? ''} authorSlug={authorSlug} />
+      {authorSlug ? <div className="articles-page__active-filter">
+        <p className="type-meta">Articoli di {author?.name?.trim() ?? authorSlug.replaceAll('-', ' ')}</p>
+        <Link className="type-meta" href="/articoli">Rimuovi filtro ×</Link>
+      </div> : null}
+      <ArticleList articles={articlesResult.data as ArticleListItem[]} heading={section?.label ?? (author ? 'Gli articoli dell’autore' : 'Tutte le storie')} />
     </main>
   )
 }

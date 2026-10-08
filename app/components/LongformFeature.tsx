@@ -1,3 +1,5 @@
+import {AuthorLinks, type Author} from '@/app/components/AuthorLinks'
+import {RubricaLabel, type Rubrica} from '@/app/components/RubricaLabel'
 import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
@@ -12,6 +14,8 @@ export type LongformArticle = {
   title: string | null
   slug: string | null
   articleType: string | null
+  rubrica?: Rubrica | null
+  authors?: Author[] | null
   excerpt: string | null
   publishedAt: string | null
   readingTime: number | null
@@ -32,7 +36,6 @@ const dateFormatter = new Intl.DateTimeFormat('it-IT', {
 
 function longformMeta(article: LongformArticle) {
   const parts = [
-    article.author?.name ?? 'Autore non disponibile',
     article.publishedAt
       ? dateFormatter.format(new Date(article.publishedAt))
       : 'Data non disponibile',
@@ -75,7 +78,7 @@ export function LongformFeature({article}: LongformFeatureProps) {
       aria-labelledby="longform-feature-title"
     >
       <header className="longform-feature__header">
-        <p className="type-meta">{sectionLabel}</p>
+        <p className="type-meta">{sectionLabel}<RubricaLabel rubrica={article.rubrica} /></p>
         <span className="type-meta">Lettura lunga / 01</span>
       </header>
 
@@ -100,7 +103,7 @@ export function LongformFeature({article}: LongformFeatureProps) {
 
         <div className="longform-feature__supporting">
           {article.excerpt ? <p className="longform-feature__excerpt">{article.excerpt}</p> : null}
-          <p className="longform-feature__meta type-meta">{longformMeta(article)}</p>
+          <p className="longform-feature__meta type-meta"><AuthorLinks article={article} /> · {longformMeta(article)}</p>
           {articleHref ? (
             <Link className="longform-feature__link type-meta" href={articleHref}>
               Leggi l’articolo <ArrowIcon />

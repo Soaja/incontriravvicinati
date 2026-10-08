@@ -1,3 +1,6 @@
+import {AuthorLinks, type Author} from '@/app/components/AuthorLinks'
+import {RubricaLabel, type Rubrica} from '@/app/components/RubricaLabel'
+import {sectionLabel} from '@/app/lib/sections'
 import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
@@ -17,6 +20,8 @@ type ArticleSummary = {
   title: string | null
   slug: string | null
   articleType: string | null
+  rubrica?: Rubrica | null
+  authors?: Author[] | null
   publishedAt: string | null
   readingTime: number | null
   author: {name: string | null} | null
@@ -42,7 +47,6 @@ function formatDate(value: string | null) {
 
 function articleMeta(article: ArticleSummary) {
   const parts = [
-    article.author?.name ?? 'Autore non disponibile',
     formatDate(article.publishedAt),
   ]
 
@@ -54,7 +58,7 @@ function articleMeta(article: ArticleSummary) {
 }
 
 function articleTypeLabel(value: string | null) {
-  return value === 'selezione' ? 'Altri articoli' : (value ?? 'Articolo')
+  return sectionLabel(value)
 }
 
 export default async function Home() {
@@ -110,7 +114,7 @@ export default async function Home() {
                   className={`latest-article latest-article--${index + 1}`}
                 >
                   <div className="latest-article__label">
-                    <p className="type-meta">{articleTypeLabel(article.articleType)}</p>
+                    <p className="type-meta">{articleTypeLabel(article.articleType)}<RubricaLabel rubrica={article.rubrica} /></p>
                     <span aria-hidden="true">{String(index + 2).padStart(2, '0')}</span>
                   </div>
 
@@ -131,7 +135,7 @@ export default async function Home() {
                   <h3 className="latest-article__title">
                     {articleHref ? <Link href={articleHref}><ArticleTitle text={articleTitle} /></Link> : <ArticleTitle text={articleTitle} />}
                   </h3>
-                  <p className="latest-article__meta type-meta">{articleMeta(article)}</p>
+                  <p className="latest-article__meta type-meta"><AuthorLinks article={article} /> · {articleMeta(article)}</p>
                 </article>
               )
               })

@@ -1,3 +1,7 @@
+import {AuthorLinks, articleAuthors, authorHref, type Author} from '@/app/components/AuthorLinks'
+import {AuthorPhoto} from '@/app/components/AuthorPhoto'
+import {RubricaLabel, type Rubrica} from '@/app/components/RubricaLabel'
+import {sectionLabel} from '@/app/lib/sections'
 import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
@@ -10,7 +14,7 @@ import type {PortableTextBlock} from 'next-sanity'
 
 import {ArticleBody} from '@/app/components/ArticleBody'
 import {client} from '@/sanity/lib/client'
-import {getSanityImageUrl, urlFor} from '@/sanity/lib/image'
+import {getSanityImageUrl, imageDimensions, urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {
   ARTICLE_METADATA_QUERY,
@@ -32,6 +36,7 @@ type EditorialImage = SanityImageSource & {
 }
 
 type ArticleAuthor = {
+  _id?: string
   name: string | null
   slug: string | null
   role: string | null
@@ -50,6 +55,8 @@ type Article = {
   slug: string | null
   excerpt: string | null
   articleType: string | null
+  rubrica?: Rubrica | null
+  authors?: Author[] | null
   publishedAt: string | null
   readingTime: number | null
   tags: string[] | null
@@ -60,6 +67,8 @@ type Article = {
 }
 
 type RelatedArticle = {
+  rubrica?: Rubrica | null
+  authors?: Author[] | null
   _id: string
   title: string | null
   slug: string | null
@@ -76,21 +85,12 @@ type ArticlePageData = {
 }
 
 type ArticleMetadata = Pick<Article, 'title' | 'excerpt' | 'publishedAt' | 'coverImage'> & {
-  author: {name: string | null} | null
+  author: Author | null
+  authors?: Author[] | null
 }
 
 type ArticlePageProps = {
   params: Promise<{slug: string}>
-}
-
-const articleTypeLabels: Record<string, string> = {
-  recensione: 'Recensione',
-  intervista: 'Intervista',
-  approfondimento: 'Approfondimento',
-  retrospettiva: 'Retrospettiva',
-  news: 'News',
-  reportage: 'Reportage',
-  selezione: 'Altri articoli',
 }
 
 const dateFormatter = new Intl.DateTimeFormat('it-IT', {
@@ -99,10 +99,6 @@ const dateFormatter = new Intl.DateTimeFormat('it-IT', {
   year: 'numeric',
   timeZone: 'UTC',
 })
-
-function typeLabel(value: string | null) {
-  return value ? (articleTypeLabels[value] ?? 'Articolo') : 'Articolo'
-}
 
 function formatDate(value: string | null) {
   return value ? dateFormatter.format(new Date(value)) : null
@@ -144,7 +140,7 @@ export async function generateMetadata({params}: ArticlePageProps): Promise<Meta
       title: article.title,
       description: article.excerpt ?? undefined,
       publishedTime: article.publishedAt ?? undefined,
-      authors: article.author?.name ? [article.author.name] : undefined,
+      authors: articleAuthors(article).map(author => author.name!),
       images: image ? [{url: image, alt: article.coverImage?.alt ?? article.title}] : undefined,
     },
   }
@@ -161,8 +157,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
 
   const articleUrl = `${siteUrl}/articoli/${encodeURIComponent(slug)}`
   const publicationDate = formatDate(article.publishedAt)
-  const heroWidth = article.coverImage?.asset?.metadata?.dimensions?.width ?? 1600
-  const heroHeight = article.coverImage?.asset?.metadata?.dimensions?.height ?? 1000
+  const {width: heroWidth, height: heroHeight} = article.coverImage ? imageDimensions(article.coverImage) : {width: 1600, height: 1000}
   const heroLqip = article.coverImage?.asset?.metadata?.lqip
   const heroUrl = getSanityImageUrl(article.coverImage, (imageBuilder) =>
     imageBuilder.width(1800).auto('format').url(),
@@ -170,7 +165,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
   const issueLabel = article.issue?.issueNumber
     ? `N. ${String(article.issue.issueNumber).padStart(2, '0')}`
     : article.issue?.title
-  const hasAuthorProfile = Boolean(article.author?.bio || article.author?.photo)
+  const authors = articleAuthors(article)
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -179,9 +174,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
     datePublished: article.publishedAt || undefined,
     mainEntityOfPage: articleUrl,
     image: heroUrl ? [heroUrl] : undefined,
-    author: article.author?.name
-      ? {'@type': 'Person', name: article.author.name}
-      : undefined,
+    author: authors.map(author => ({'@type': 'Person', name: author.name, url: authorHref(author) ? `${siteUrl}${authorHref(author)}` : undefined})),
     publisher: {'@type': 'Organization', name: 'Incontri Ravvicinati'},
   }
 
@@ -190,7 +183,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
       <article>
         <header className="article-header site-container">
           <div className="article-header__eyebrow type-meta">
-            <span>{typeLabel(article.articleType)}</span>
+            <span>{sectionLabel(article.articleType)}<RubricaLabel rubrica={article.rubrica} /></span>
             {issueLabel ? <span>{issueLabel}</span> : null}
           </div>
 
@@ -200,7 +193,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
 
           <div className="article-header__byline type-meta">
             <p>
-              {article.author?.name ? `Di ${article.author.name}` : 'Autore non disponibile'}
+              <AuthorLinks article={article} />
             </p>
             <p>
               {publicationDate}
@@ -238,31 +231,17 @@ export default async function ArticlePage({params}: ArticlePageProps) {
             </ul>
           ) : null}
 
-          {hasAuthorProfile && article.author ? (
-            <aside className="article-author" aria-labelledby="article-author-heading">
-              {article.author.photo ? (
-                <div className="article-author__photo">
-                  <Image
-                    src={urlFor(article.author.photo)
-                      .width(240)
-                      .height(240)
-                      .fit('crop')
-                      .auto('format')
-                      .url()}
-                    alt={article.author.photo.alt ?? article.author.name ?? ''}
-                    fill
-                    sizes="112px"
-                  />
-                </div>
-              ) : null}
+          {authors.map(author => (
+            <aside className="article-author" key={author._id || author.slug || author.name} aria-label="Profilo autore">
+              <AuthorPhoto author={author} />
               <div>
                 <p className="type-meta">Scritto da</p>
-                <h2 id="article-author-heading">{article.author.name}</h2>
-                {article.author.role ? <p className="article-author__role type-meta">{article.author.role}</p> : null}
-                {article.author.bio ? <p className="article-author__bio">{article.author.bio}</p> : null}
+                <h2><AuthorLinks article={{author}} /></h2>
+                {author.role ? <p className="article-author__role type-meta">{author.role}</p> : null}
+                {author.bio ? <p className="article-author__bio">{author.bio}</p> : null}
               </div>
             </aside>
-          ) : null}
+          ))}
         </div>
       </article>
 
@@ -283,7 +262,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
               return (
                 <article className="related-article" key={item._id}>
                   <div className="related-article__label type-meta">
-                    <span>{typeLabel(item.articleType)}</span>
+                    <span>{sectionLabel(item.articleType)}<RubricaLabel rubrica={item.rubrica} /></span>
                     <span>{String(index + 1).padStart(2, '0')}</span>
                   </div>
                   {item.coverImage ? (
@@ -307,7 +286,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                   ) : null}
                   <h3>{itemHref ? <Link href={itemHref}><ArticleTitle text={itemTitle} /></Link> : <ArticleTitle text={itemTitle} />}</h3>
                   <p className="type-meta">
-                    {item.author?.name ?? 'Autore non disponibile'}
+                    <AuthorLinks article={item} />
                     {item.readingTime ? ` · ${item.readingTime} min` : ''}
                   </p>
                 </article>

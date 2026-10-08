@@ -11,13 +11,13 @@ type ArticleFilter = {
 type ArticleFiltersProps = {
   options: readonly ArticleFilter[]
   activeValue: string
-  hasAuthorFilter: boolean
+  authorSlug?: string
 }
 
 export function ArticleFilters({
   options,
   activeValue,
-  hasAuthorFilter,
+  authorSlug,
 }: ArticleFiltersProps) {
   const filtersRef = useRef<HTMLUListElement>(null)
   const [isAtEnd, setIsAtEnd] = useState(false)
@@ -51,8 +51,11 @@ export function ArticleFilters({
       <div className="article-filters__shell">
         <ul ref={filtersRef} onScroll={updateScrollState}>
           {options.map((type) => {
-            const href = type.value ? `/articoli?type=${type.value}` : '/articoli'
-            const isActive = type.value === activeValue && !hasAuthorFilter
+            const params = new URLSearchParams()
+            if (type.value) params.set('type', type.value)
+            if (authorSlug) params.set('author', authorSlug)
+            const href = params.size ? `/articoli?${params}` : '/articoli'
+            const isActive = type.value === activeValue
 
             return (
               <li key={type.value || 'all'}>

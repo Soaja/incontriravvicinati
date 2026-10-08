@@ -1,3 +1,6 @@
+import {AuthorLinks, type Author} from '@/app/components/AuthorLinks'
+import {RubricaLabel, type Rubrica} from '@/app/components/RubricaLabel'
+import {sectionLabel} from '@/app/lib/sections'
 import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
@@ -12,6 +15,8 @@ export type ReviewArticle = {
   title: string | null
   slug: string | null
   articleType: string | null
+  rubrica?: Rubrica | null
+  authors?: Author[] | null
   publishedAt: string | null
   readingTime: number | null
   author: {name: string | null} | null
@@ -31,7 +36,6 @@ const dateFormatter = new Intl.DateTimeFormat('it-IT', {
 
 function reviewMeta(review: ReviewArticle) {
   const parts = [
-    review.author?.name ?? 'Autore non disponibile',
     review.publishedAt
       ? dateFormatter.format(new Date(review.publishedAt))
       : 'Data non disponibile',
@@ -82,7 +86,7 @@ export function ReviewsSection({reviews}: ReviewsSectionProps) {
             return (
               <article key={review._id} className="review-card">
                 <div className="review-card__label">
-                  <p className="type-meta">Recensione</p>
+                  <p className="type-meta">{sectionLabel(review.articleType)}<RubricaLabel rubrica={review.rubrica} /></p>
                   <span aria-hidden="true">R/{String(index + 1).padStart(2, '0')}</span>
                 </div>
 
@@ -104,7 +108,7 @@ export function ReviewsSection({reviews}: ReviewsSectionProps) {
                   <h3 className="review-card__title">
                     {reviewHref ? <Link href={reviewHref}><ArticleTitle text={reviewTitle} /></Link> : <ArticleTitle text={reviewTitle} />}
                   </h3>
-                  <p className="review-card__meta type-meta">{reviewMeta(review)}</p>
+                  <p className="review-card__meta type-meta"><AuthorLinks article={review} /> · {reviewMeta(review)}</p>
                 </div>
               </article>
             )

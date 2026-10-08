@@ -1,4 +1,7 @@
 import {ArticleTitle} from '@/app/components/ArticleTitle'
+import {RubricaLabel, type Rubrica} from './RubricaLabel'
+import {AuthorLinks, type ArticlePeople} from './AuthorLinks'
+import {sectionLabel} from '@/app/lib/sections'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,11 +10,12 @@ import homepageHeroImage from '@/public/editorial/homepage-hero.png'
 import {ArrowIcon} from './ArrowIcon'
 
 type FeaturedHeroProps = {
-  article: {
+  article: ArticlePeople & {
     title: string | null
     slug: string | null
     articleType: string | null
     excerpt: string | null
+    rubrica?: Rubrica | null
   }
   meta: string
 }
@@ -40,7 +44,7 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
         <div className="featured-hero__intro">
           {article.articleType ? (
             <p className="type-meta">
-              {article.articleType === 'selezione' ? 'Altri articoli' : article.articleType}
+              {sectionLabel(article.articleType)}<RubricaLabel rubrica={article.rubrica} />
             </p>
           ) : null}
           <h2 id="featured-article-title" className="featured-hero__title">
@@ -64,7 +68,7 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
         <div className="featured-hero__supporting">
           {article.excerpt ? <p className="featured-hero__excerpt">{article.excerpt}</p> : null}
           <div className="featured-hero__footer">
-            <p className="type-meta">{meta}</p>
+            <p className="type-meta"><AuthorLinks article={article} /> · {meta}</p>
             {articleHref ? (
               <Link className="featured-hero__link type-meta" href={articleHref}>
                 Leggi l’articolo <ArrowIcon />
