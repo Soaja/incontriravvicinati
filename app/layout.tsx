@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Incontri Ravvicinati',
   description: 'Rivista indipendente di cinema',
+  verification: {google: process.env.GOOGLE_SITE_VERIFICATION?.trim() || undefined},
   openGraph: {
     type: 'website',
     locale: 'it_IT',

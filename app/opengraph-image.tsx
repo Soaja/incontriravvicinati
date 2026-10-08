@@ -27,6 +27,8 @@ export default function OpenGraphImage() {
         background: '#000',
       }}
     >
+      {/* ImageResponse renders through Satori, which requires a native img element. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logoSrc}
         alt=""

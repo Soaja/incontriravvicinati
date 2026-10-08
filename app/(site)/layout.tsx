@@ -1,5 +1,5 @@
-import {GoogleAnalytics} from '@next/third-parties/google'
 import {Analytics} from '@vercel/analytics/next'
+import Script from 'next/script'
 
 import {Footer} from '@/app/components/Footer'
 import {Header} from '@/app/components/Header'
@@ -7,7 +7,7 @@ import {contactDetails} from '@/app/lib/contact'
 import {SanityLive} from '@/sanity/lib/live'
 import {siteUrl} from '@/app/lib/site-url'
 
-const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID
+const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID?.trim()
 
 export default function SiteLayout({children}: LayoutProps<'/'>) {
   return (
@@ -29,7 +29,13 @@ export default function SiteLayout({children}: LayoutProps<'/'>) {
         sameAs: [contactDetails.instagramUrl, contactDetails.linkedinUrl, contactDetails.letterboxdUrl],
       }).replace(/</g, '\\u003c')}} />
       <Analytics />
-      {googleAnalyticsId ? <GoogleAnalytics gaId={googleAnalyticsId} /> : null}
+      {process.env.NODE_ENV === 'production' && umamiWebsiteId ? <Script
+        id="umami-analytics"
+        src="https://cloud.umami.is/script.js"
+        strategy="afterInteractive"
+        data-website-id={umamiWebsiteId}
+        data-domains="www.incontriravvicinatimag.it"
+      /> : null}
     </>
   )
 }

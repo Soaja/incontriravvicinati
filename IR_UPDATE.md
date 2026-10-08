@@ -1,5 +1,12 @@
 # INCONTRI RAVVICINATI — batch 1
 
+## Production configuration / analytics
+- Umami Cloud uses `next/script` with `afterInteractive`, `NEXT_PUBLIC_UMAMI_WEBSITE_ID`, `data-domains="www.incontriravvicinatimag.it"`; rendered only in production by the public `(site)` layout, so `/studio` is excluded. The previous optional GA integration is disabled in code to preserve cookieless tracking; its existing Vercel variable is untouched. Vercel Analytics remains. No privacy/cookie page exists, so no new page was introduced. [Umami tracker documentation](https://docs.umami.is/docs/tracker-configuration).
+- Root metadata inherits optional `GOOGLE_SITE_VERIFICATION` on all pages, including Studio. No actual Google verification token was supplied; support is tested locally with a value never added to Vercel. `.env.example` contains blank keys only.
+- Vercel project `incontriravvicinati` / `prj_mqlIFI8LOLDPo0Ik8dTtyUKyZ488`, team `vojas-projects-9f2534f6`; production domain `https://www.incontriravvicinatimag.it`; GitHub integration `Soaja/incontriravvicinati`, production branch `main`. Deployment is triggered by a normal push to main. The project is linked locally in ignored `.vercel/`.
+- `SITE_URL`, `NEXT_PUBLIC_UMAMI_WEBSITE_ID`, and a random 256-bit `SANITY_REVALIDATE_SECRET` are configured using `npx vercel env add` for both Production and Preview. Secret is marked sensitive, never committed; its value is given only in the final user report for the Sanity webhook Secret field. No Sanity content/configuration mutations or file deletions are part of this release. [Vercel CLI env documentation](https://vercel.com/docs/cli/env).
+- Pre-deploy checks: lint has no warnings/errors; the native Satori `img` in the OG renderer has a narrowly scoped, documented ESLint exception. Local production build and browser checks confirm Umami on home/article/archive/search, exclusion from Studio, Google verification inherited on every tested route, and an unsigned webhook returning 401.
+
 ## Stack / audit
 - Next.js 16.3.1, React 19.2.8, App Router (`app/(site)`), Tailwind 4 + `app/globals.css`; embedded Sanity 5 Studio at `/studio` (`sanity.config.ts`).
 - Schemas: `sanity/schemaTypes/{article,author,issue,siteSettings}.ts`; Studio navigation: `sanity/structure.ts`.
