@@ -117,8 +117,7 @@ export const EDITORIAL_TEAM_QUERY = defineQuery(/* groq */ `
 
 export const EDITORIAL_TEAM_ASSETS_QUERY = defineQuery(/* groq */ `
   *[
-    _type == "author" &&
-    name in $names
+    _type == "author"
   ] {
     _id,
     name,
@@ -151,7 +150,7 @@ export const ARTICLES_PAGE_QUERY = defineQuery(/* groq */ `
     defined(publishedAt) &&
     publishedAt <= now() &&
     ($articleType == "" || articleType == $articleType) &&
-    ($authorSlug == "" || author->slug.current == $authorSlug)
+    ($authorSlug == "" || author->slug.current == $authorSlug || author._ref == $authorSlug)
   ] | order(publishedAt desc, _id asc)[0...24] {
     ${articleSummaryFields},
     excerpt,

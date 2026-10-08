@@ -45,24 +45,33 @@ const editors: RosterMember[] = [
   {role: 'Redattore', name: 'Lorenzo Bertoldo'},
   {role: 'Redattore', name: 'Luca Dimauro'},
   {role: 'Redattore', name: 'Alessandro Lombardi'},
+  {role: 'Redattore', name: 'Elena Cosentino'},
+  {role: 'Redattore', name: 'Yasmine Pattaro'},
+  {role: 'Redattore', name: 'Tommaso Clementi'},
+  {role: 'Redattore', name: 'Alfonso La Manna'},
+  {role: 'Redattore', name: 'Gianluca Zanni'},
+  {role: 'Redattore', name: 'Michele Biocotino'},
 ]
 
 const communication: RosterMember[] = [
   {role: 'Comunicazione / Social', name: 'Lidiya Castiglioni'},
   {role: 'Comunicazione / Social', name: 'Letizia Giribaldi'},
-  {role: 'Comunicazione / Social', name: 'Ludovica Romeo'},
   {role: 'Comunicazione / Social', name: 'Angelica Salerno'},
   {role: 'Comunicazione / Social', name: 'Francesca Suman'},
   {role: 'Comunicazione / Social', name: 'Simone Sgambetterra'},
 ]
 
-const editorialNames = [...direction, ...artDirection, ...editors, ...communication].map(
-  ({name}) => name,
-)
+function normalizedName(name: string) {
+  return name.normalize('NFC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('it-IT')
+}
+
+function authorHref(asset: AuthorAsset) {
+  return `/articoli?author=${encodeURIComponent(asset.slug?.trim() || asset._id)}`
+}
 
 function MemberName({member, asset}: {member: RosterMember; asset?: AuthorAsset}) {
-  return asset?.slug ? (
-    <Link href={`/articoli?author=${encodeURIComponent(asset.slug)}`}>{member.name}</Link>
+  return asset ? (
+    <Link href={authorHref(asset)}>{member.name}</Link>
   ) : (
     member.name
   )
@@ -77,8 +86,8 @@ function SocialMemberName({member, asset}: {member: RosterMember; asset?: Author
     </>
   )
 
-  return asset?.slug ? (
-    <Link href={`/articoli?author=${encodeURIComponent(asset.slug)}`}>{name}</Link>
+  return asset ? (
+    <Link href={authorHref(asset)}>{name}</Link>
   ) : (
     name
   )
@@ -87,11 +96,10 @@ function SocialMemberName({member, asset}: {member: RosterMember; asset?: Author
 export default async function RedazionePage() {
   const {data} = await sanityFetch({
     query: EDITORIAL_TEAM_ASSETS_QUERY,
-    params: {names: editorialNames},
   })
   const authorAssets = data as AuthorAsset[]
   const assetsByName = new Map(
-    authorAssets.flatMap((author) => (author.name ? [[author.name, author] as const] : [])),
+    authorAssets.flatMap((author) => (author.name ? [[normalizedName(author.name), author] as const] : [])),
   )
 
   return (
@@ -113,7 +121,7 @@ export default async function RedazionePage() {
 
         <div className="direction-list">
           {direction.map((member, index) => {
-            const asset = assetsByName.get(member.name)
+            const asset = assetsByName.get(normalizedName(member.name))
 
             return (
               <article key={member.name} className="direction-member">
@@ -137,7 +145,7 @@ export default async function RedazionePage() {
 
         <div className="art-roster">
           {artDirection.map((member, index) => {
-            const asset = assetsByName.get(member.name)
+            const asset = assetsByName.get(normalizedName(member.name))
 
             return (
               <article
@@ -183,7 +191,7 @@ export default async function RedazionePage() {
 
         <ol className="editors-roster">
           {editors.map((member, index) => {
-            const asset = assetsByName.get(member.name)
+            const asset = assetsByName.get(normalizedName(member.name))
 
             return (
               <li key={member.name}>
@@ -206,7 +214,7 @@ export default async function RedazionePage() {
 
         <ul className="social-roster">
           {communication.map((member, index) => {
-            const asset = assetsByName.get(member.name)
+            const asset = assetsByName.get(normalizedName(member.name))
 
             return (
               <li key={member.name}>

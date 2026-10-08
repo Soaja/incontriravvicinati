@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -128,7 +129,7 @@ export default async function Home() {
                   ) : null}
 
                   <h3 className="latest-article__title">
-                    {articleHref ? <Link href={articleHref}>{articleTitle}</Link> : articleTitle}
+                    {articleHref ? <Link href={articleHref}><ArticleTitle text={articleTitle} /></Link> : <ArticleTitle text={articleTitle} />}
                   </h3>
                   <p className="latest-article__meta type-meta">{articleMeta(article)}</p>
                 </article>

@@ -25,9 +25,9 @@ const inquiries = [
   },
   {
     number: '03',
-    title: 'Immagini e collaborazioni',
+    title: 'COLLABORAZIONI',
     description:
-      'Fotografia, illustrazione, grafica, partnership e nuovi modi di costruire insieme il racconto visivo.',
+      'Idee, nuove prospettive e partnership per ampliare il nostro sguardo sul cinema',
     subject: 'Collaborazione visiva',
   },
 ]
@@ -43,8 +43,7 @@ export default async function ContattiPage() {
 
         <h1>Contatti</h1>
         <p className="contact-hero__intro">
-          Per proposte editoriali, collaborazioni, festival, rassegne e progetti legati alla
-          cultura visiva. Le conversazioni possono iniziare da qui.
+          Proposte editoriali, eventi, festival e rassegne. Scrivici se hai un&apos;idea da raccontarci
         </p>
       </header>
 
@@ -69,6 +68,7 @@ export default async function ContattiPage() {
             Raccontaci chi sei, cosa immagini e perché pensi che il tuo progetto possa
             incontrare Incontri Ravvicinati.
           </p>
+          <div className="contact-direct__socials">
           <a
             className="contact-direct__instagram type-meta"
             href={contactDetails.instagramUrl}
@@ -77,6 +77,13 @@ export default async function ContattiPage() {
           >
             Instagram {contactDetails.instagramHandle} <ArrowIcon />
           </a>
+          <a className="contact-direct__instagram type-meta" href={contactDetails.linkedinUrl} target="_blank" rel="noreferrer">
+            LinkedIn <ArrowIcon />
+          </a>
+          <a className="contact-direct__instagram type-meta" href={contactDetails.letterboxdUrl} target="_blank" rel="noreferrer">
+            Letterboxd <ArrowIcon />
+          </a>
+          </div>
         </div>
       </section>
 

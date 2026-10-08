@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -101,7 +102,7 @@ export function ReviewsSection({reviews}: ReviewsSectionProps) {
 
                 <div className="review-card__body">
                   <h3 className="review-card__title">
-                    {reviewHref ? <Link href={reviewHref}>{reviewTitle}</Link> : reviewTitle}
+                    {reviewHref ? <Link href={reviewHref}><ArticleTitle text={reviewTitle} /></Link> : <ArticleTitle text={reviewTitle} />}
                   </h3>
                   <p className="review-card__meta type-meta">{reviewMeta(review)}</p>
                 </div>

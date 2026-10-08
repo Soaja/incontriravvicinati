@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -94,7 +95,7 @@ export function LongformFeature({article}: LongformFeatureProps) {
 
       <div className="longform-feature__spread">
         <h2 id="longform-feature-title" className="longform-feature__title">
-          {articleHref ? <Link href={articleHref}>{articleTitle}</Link> : articleTitle}
+          {articleHref ? <Link href={articleHref}><ArticleTitle text={articleTitle} /></Link> : <ArticleTitle text={articleTitle} />}
         </h2>
 
         <div className="longform-feature__supporting">

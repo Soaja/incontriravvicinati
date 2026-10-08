@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
 import Image from 'next/image'
@@ -183,7 +184,7 @@ export default async function ArticoliPage({searchParams}: ArticoliPageProps) {
                   ) : null}
 
                   <div className="article-archive-card__content">
-                    <h3>{href ? <Link href={href}>{title}</Link> : title}</h3>
+                    <h3>{href ? <Link href={href}><ArticleTitle text={title} /></Link> : <ArticleTitle text={title} />}</h3>
                     {article.excerpt ? <p className="article-archive-card__excerpt">{article.excerpt}</p> : null}
                     <p className="article-archive-card__meta type-meta">
                       {article.author?.name ?? 'Autore non disponibile'} ·{' '}

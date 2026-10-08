@@ -1,20 +1,9 @@
-import Link from 'next/link'
-
 import {contactDetails} from '@/app/lib/contact'
-import {sanityFetch} from '@/sanity/lib/live'
-import {SITE_SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 import {BrandLogo} from './BrandLogo'
 import {ArrowIcon} from './ArrowIcon'
 
-type SiteSettings = {
-  footerText: string | null
-}
-
-export async function Footer() {
-  const {data} = await sanityFetch({query: SITE_SETTINGS_QUERY}).catch(() => ({data: null}))
-  const settings = data as SiteSettings | null
-
+export function Footer() {
   return (
     <footer className="site-footer">
       <section className="site-contact" aria-labelledby="site-contact-heading">
@@ -32,8 +21,7 @@ export async function Footer() {
 
             <div className="site-contact__details">
               <p>
-                Proposte editoriali, festival, rassegne, immagini e nuove idee. Se hai una
-                storia da raccontare, questo è il posto giusto da cui iniziare.
+                Proposte editoriali, eventi, festival e rassegne. Scrivici se hai un&apos;idea da raccontarci
               </p>
 
               <a className="site-contact__email" href={`mailto:${contactDetails.email}`}>
@@ -42,11 +30,14 @@ export async function Footer() {
 
               <div className="site-contact__links type-meta">
                 <a href={contactDetails.phoneHref}>{contactDetails.phoneDisplay}</a>
-                <Link href="/contatti">
-                  Contatti <ArrowIcon />
-                </Link>
                 <a href={contactDetails.instagramUrl} target="_blank" rel="noreferrer">
                   {contactDetails.instagramHandle} <ArrowIcon />
+                </a>
+                <a href={contactDetails.linkedinUrl} target="_blank" rel="noreferrer">
+                  LinkedIn <ArrowIcon />
+                </a>
+                <a href={contactDetails.letterboxdUrl} target="_blank" rel="noreferrer">
+                  Letterboxd <ArrowIcon />
                 </a>
               </div>
             </div>
@@ -59,8 +50,7 @@ export async function Footer() {
           <BrandLogo variant="negative" />
         </div>
         <p className="type-body site-footer__statement">
-          {settings?.footerText ??
-            'Una rivista indipendente dedicata al cinema e alla cultura visiva.'}
+          Rivista indipendente di cinema
         </p>
         <p className="type-meta site-footer__edition">
           © {new Date().getFullYear()} · Italia

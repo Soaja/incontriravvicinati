@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
 import Image from 'next/image'
@@ -193,7 +194,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
             {issueLabel ? <span>{issueLabel}</span> : null}
           </div>
 
-          <h1>{article.title}</h1>
+          <h1><ArticleTitle text={article.title} /></h1>
 
           {article.excerpt ? <p className="article-header__excerpt">{article.excerpt}</p> : null}
 
@@ -304,7 +305,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                       </Link>
                     ) : null
                   ) : null}
-                  <h3>{itemHref ? <Link href={itemHref}>{itemTitle}</Link> : itemTitle}</h3>
+                  <h3>{itemHref ? <Link href={itemHref}><ArticleTitle text={itemTitle} /></Link> : <ArticleTitle text={itemTitle} />}</h3>
                   <p className="type-meta">
                     {item.author?.name ?? 'Autore non disponibile'}
                     {item.readingTime ? ` · ${item.readingTime} min` : ''}

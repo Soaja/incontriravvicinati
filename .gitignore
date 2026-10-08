@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/artifacts/batch-1/
 
 # next.js
 /.next/

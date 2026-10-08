@@ -1,3 +1,4 @@
+import {ArticleTitle} from '@/app/components/ArticleTitle'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -43,7 +44,7 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
             </p>
           ) : null}
           <h2 id="featured-article-title" className="featured-hero__title">
-            {articleHref ? <Link href={articleHref}>{article.title}</Link> : article.title}
+            {articleHref ? <Link href={articleHref}><ArticleTitle text={article.title} /></Link> : <ArticleTitle text={article.title} />}
           </h2>
         </div>
 
