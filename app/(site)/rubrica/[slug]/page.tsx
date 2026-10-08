@@ -3,6 +3,7 @@ import {notFound, permanentRedirect} from 'next/navigation'
 import {Pagination} from '@/app/components/Pagination'
 import {ARTICLES_PER_PAGE, pageNumber, pageUrl, type QueryValue} from '@/app/lib/pagination'
 import {siteUrl} from '@/app/lib/site-url'
+import {metaDescription, seoAlternates} from '@/app/lib/seo'
 import {ARCHIVE_COUNT_QUERY, archivePageQuery} from '@/sanity/lib/archive'
 import {ArticleList, type ArticleListItem} from '@/app/components/ArticleList'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -16,8 +17,8 @@ export async function generateMetadata({params, searchParams}: Props): Promise<M
   const {data} = await sanityFetch({query: RUBRICA_QUERY, params: {slug}, stega: false})
   const rubrica = data as Column | null
   const page = pageNumber((await searchParams).pagina) ?? 1
-  return {title: rubrica ? `${rubrica.title}${page > 1 ? ` · Pagina ${page}` : ''} | Incontri Ravvicinati` : 'Rubrica non trovata', description: rubrica?.description ?? undefined,
-    alternates: {canonical: siteUrl + pageUrl(`/rubrica/${encodeURIComponent(slug)}`, {}, page)}}
+  return {title: rubrica ? `${rubrica.title} · Rubrica di cinema${page > 1 ? ` · Pagina ${page}` : ''} | Incontri Ravvicinati` : 'Rubrica non trovata', description: rubrica ? metaDescription(rubrica.description?.trim() || `Leggi ${rubrica.title}, la rubrica di Incontri Ravvicinati dedicata al cinema: tutti gli articoli, le analisi e gli approfondimenti della serie.`) : undefined,
+    alternates: seoAlternates(siteUrl + pageUrl(`/rubrica/${encodeURIComponent(slug)}`, {}, page))}
 }
 
 export default async function RubricaPage({params, searchParams}: Props) {

@@ -72,7 +72,7 @@ export function ReviewsSection({reviews}: ReviewsSectionProps) {
                     .fit('crop')
                     .auto('format')
                     .url()}
-                  alt={review.coverImage.alt ?? reviewTitle}
+                  alt={review.coverImage.alt?.trim() || reviewTitle}
                   fill
                   sizes={
                     index === 0

@@ -14,6 +14,11 @@ import {SloganSection} from '@/app/components/SloganSection'
 import {urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {FEATURED_ISSUE_QUERY, HOMEPAGE_QUERY} from '@/sanity/lib/queries'
+import {siteUrl} from '@/app/lib/site-url'
+import {jsonLd, publisher, seoAlternates} from '@/app/lib/seo'
+import type {Metadata} from 'next'
+
+export const metadata: Metadata = {alternates: seoAlternates(siteUrl)}
 
 type ArticleSummary = {
   _id: string
@@ -71,6 +76,11 @@ export default async function Home() {
 
   return (
     <main id="main-content" className="site-container w-full py-12 md:py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: jsonLd({
+        '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${siteUrl}/#website`,
+        url: siteUrl, name: 'Incontri Ravvicinati', inLanguage: 'it-IT', publisher,
+        potentialAction: {'@type': 'SearchAction', target: {'@type': 'EntryPoint', urlTemplate: `${siteUrl}/cerca?q={search_term_string}`}, 'query-input': 'required name=search_term_string'},
+      })}} />
       <h1 className="sr-only">Incontri Ravvicinati</h1>
       <FeaturedIssueHero issue={featuredIssue} />
 
@@ -97,7 +107,7 @@ export default async function Home() {
                       .fit('crop')
                       .auto('format')
                       .url()}
-                    alt={article.coverImage.alt ?? articleTitle}
+                    alt={article.coverImage.alt?.trim() || articleTitle}
                     fill
                     sizes={
                       index === 0

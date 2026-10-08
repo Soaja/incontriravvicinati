@@ -14,7 +14,7 @@ export type ArticlePeople = {author?: Author | null; authors?: (Author | null)[]
 export function articleAuthors(article: ArticlePeople) {
   const seen = new Set<string>()
   return [article.author, ...(article.authors ?? [])].flatMap(author => {
-    if (!author?.name) return []
+    if (!author?.name?.trim()) return []
     const key = author._id || author.slug || author.name.trim()
     if (seen.has(key)) return []
     seen.add(key)

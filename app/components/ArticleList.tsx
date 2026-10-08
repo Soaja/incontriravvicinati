@@ -78,9 +78,8 @@ export function ArticleList({articles, heading = 'Tutte le storie', total = arti
                               .fit('crop')
                               .auto('format')
                               .url()}
-                            alt={article.coverImage.alt ?? title}
+                            alt={article.coverImage.alt?.trim() || title}
                             fill
-                            priority={index === 0}
                             sizes={
                               index === 0
                                 ? '(max-width: 767px) 100vw, 64vw'
@@ -98,9 +97,8 @@ export function ArticleList({articles, heading = 'Tutte le storie', total = arti
                           .fit('crop')
                           .auto('format')
                           .url()}
-                        alt={article.coverImage.alt ?? title}
+                        alt={article.coverImage.alt?.trim() || title}
                         fill
-                        priority={index === 0}
                         sizes={
                           index === 0
                             ? '(max-width: 767px) 100vw, 64vw'

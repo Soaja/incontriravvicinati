@@ -17,7 +17,7 @@ type ArticleBodyImage = SanityImageSource & {
   }
 }
 
-function BodyImage({value}: {value: ArticleBodyImage}) {
+function BodyImage({value, title}: {value: ArticleBodyImage; title: string}) {
   if (!hasValidImageReference(value)) {
     return null
   }
@@ -42,7 +42,7 @@ function BodyImage({value}: {value: ArticleBodyImage}) {
     <figure className={`article-body__figure${value.fullWidth ? ' article-body__figure--full-width' : ''}`}>
       <Image
         src={imageUrl}
-        alt={value.alt ?? ''}
+        alt={value.alt?.trim() || title}
         width={width}
         height={height}
         sizes={value.fullWidth ? '(max-width: 767px) 100vw, 1200px' : '(max-width: 767px) 100vw, 740px'}
@@ -88,18 +88,18 @@ const portableTextComponents: PortableTextComponents = {
     number: ({children}) => <ol>{children}</ol>,
   },
   types: {
-    image: ({value}) => <BodyImage value={value as ArticleBodyImage} />,
+    image: ({value}) => <BodyImage value={value as ArticleBodyImage} title="Immagine dell’articolo" />,
   },
 }
 
-export function ArticleBody({value}: {value: PortableTextBlock[]}) {
+export function ArticleBody({value, title = 'Immagine dell’articolo'}: {value: PortableTextBlock[]; title?: string}) {
   if (!Array.isArray(value) || value.length === 0) {
     return null
   }
 
   return (
     <div className="article-body">
-      <PortableText value={value} components={portableTextComponents} />
+      <PortableText value={value} components={{...portableTextComponents, types: {image: ({value}) => <BodyImage value={value as ArticleBodyImage} title={title} />}}} />
     </div>
   )
 }

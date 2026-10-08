@@ -65,7 +65,7 @@ export function LongformFeature({article}: LongformFeatureProps) {
           .fit('crop')
           .auto('format')
           .url()}
-        alt={article.coverImage.alt ?? articleTitle}
+        alt={article.coverImage.alt?.trim() || articleTitle}
         fill
         sizes="(max-width: 767px) 100vw, 78vw"
       />

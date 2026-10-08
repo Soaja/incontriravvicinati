@@ -27,7 +27,7 @@ export function FeaturedHero({article, meta}: FeaturedHeroProps) {
       src={homepageHeroImage}
       alt="Copertina di Incontri Ravvicinati con ritratto in mezzatinta blu e verde"
       fill
-      priority
+      loading="eager"
       placeholder="blur"
       sizes="(max-width: 767px) 100vw, 46vw"
     />

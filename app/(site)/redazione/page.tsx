@@ -1,6 +1,8 @@
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
 import Link from 'next/link'
+import {seoAlternates} from '@/app/lib/seo'
+import {siteUrl} from '@/app/lib/site-url'
 
 import {AuthorPhoto} from '@/app/components/AuthorPhoto'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -9,6 +11,7 @@ import {EDITORIAL_TEAM_ASSETS_QUERY} from '@/sanity/lib/queries'
 export const metadata: Metadata = {
   title: 'Redazione',
   description: 'La redazione di Incontri Ravvicinati.',
+  alternates: seoAlternates(`${siteUrl}/redazione`),
 }
 
 type RosterMember = {

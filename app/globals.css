@@ -2603,7 +2603,8 @@ a:focus-visible {
   grid-column: 1 / -1;
   max-width: none;
   font-size: clamp(1.85rem, 8vw, 7rem);
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .social-roster {
@@ -2696,7 +2697,7 @@ a:focus-visible {
   }
 
   .social-roster li {
-    grid-template-columns: 5rem minmax(0, 1fr) minmax(10rem, 3fr);
+    grid-template-columns: 5rem minmax(0, 2fr) minmax(10rem, 1fr);
   }
 
   .social-roster p {
@@ -2908,6 +2909,12 @@ a:focus-visible {
 .article-header {
   padding-block: clamp(3rem, 8vw, 8rem) clamp(2.5rem, 6vw, 6rem);
 }
+
+.article-breadcrumbs { margin-bottom: 1.5rem; }
+.article-breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.article-breadcrumbs li + li::before { content: '/'; margin-right: 0.5rem; }
+.article-breadcrumbs [aria-current] { display: inline-block; max-width: 48ch; }
+.article-breadcrumbs a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 .article-header__eyebrow {
   display: flex;

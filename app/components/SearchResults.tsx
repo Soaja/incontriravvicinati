@@ -24,7 +24,7 @@ export function SearchResults({articles, selected = -1, interactive = false, onC
         <Link className={`search-result${selected === index ? ' search-result--selected' : ''}`} href={`/articoli/${encodeURIComponent(article.slug)}`}
           id={interactive ? `search-option-${index}` : undefined} role={interactive ? 'option' : undefined} aria-selected={interactive ? selected === index : undefined}
           onClick={onChoose} onMouseEnter={onSelect ? () => onSelect(index) : undefined}>
-          <div className="search-result__image">{image ? <Image src={image} alt={article.coverImage?.alt ?? ''} width={120} height={80} sizes="(max-width: 767px) 72px, 120px" /> : <span aria-hidden="true">IR</span>}</div>
+          <div className="search-result__image">{image ? <Image src={image} alt={article.coverImage?.alt?.trim() || article.title} width={120} height={80} sizes="(max-width: 767px) 72px, 120px" /> : <span aria-hidden="true">IR</span>}</div>
           <div className="search-result__text">
             <p className="type-meta">{sectionLabel(article.articleType)}</p>
             <h2><ArticleTitle text={article.title} /></h2>

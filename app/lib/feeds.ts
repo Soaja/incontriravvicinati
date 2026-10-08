@@ -1,0 +1,10 @@
+import {siteUrl} from './site-url'
+export type FeedArticle = {title: string; slug: string; excerpt?: string | null; publishedAt: string; _updatedAt?: string; authorNames?: string[]}
+export const xmlEscape = (text: string) => text.replace(/[<>&"']/g, character => ({'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&apos;'}[character]!))
+const articleUrl = (slug: string) => siteUrl + '/articoli/' + encodeURIComponent(slug)
+export function newsXml(articles: FeedArticle[]) {
+  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">${articles.map(article => `<url><loc>${xmlEscape(articleUrl(article.slug))}</loc><news:news><news:publication><news:name>Incontri Ravvicinati</news:name><news:language>it</news:language></news:publication><news:publication_date>${xmlEscape(article.publishedAt)}</news:publication_date><news:title>${xmlEscape(article.title)}</news:title></news:news></url>`).join('')}</urlset>`
+}
+export function rssXml(articles: FeedArticle[]) {
+  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Incontri Ravvicinati</title><link>${siteUrl}</link><description>Rivista indipendente di cinema</description><language>it-IT</language><atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>${articles[0] ? `<lastBuildDate>${new Date(articles[0]._updatedAt ?? articles[0].publishedAt).toUTCString()}</lastBuildDate>` : ''}${articles.map(article => `<item><title>${xmlEscape(article.title)}</title><link>${xmlEscape(articleUrl(article.slug))}</link><guid isPermaLink="true">${xmlEscape(articleUrl(article.slug))}</guid><description>${xmlEscape(article.excerpt?.trim() || article.title)}</description><pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>${[...new Set(article.authorNames ?? [])].filter(Boolean).map(name => `<dc:creator>${xmlEscape(name.trim())}</dc:creator>`).join('')}</item>`).join('')}</channel></rss>`
+}

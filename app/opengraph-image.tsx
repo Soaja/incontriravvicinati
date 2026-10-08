@@ -31,7 +31,7 @@ export default function OpenGraphImage() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logoSrc}
-        alt=""
+        alt="Logo di Incontri Ravvicinati"
         width="1200"
         height="849"
         style={{display: 'block', width: 1200, height: 849}}

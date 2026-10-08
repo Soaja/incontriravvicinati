@@ -209,6 +209,7 @@ export const ARTICLE_METADATA_QUERY = defineQuery(/* groq */ `
     _updatedAt,
     excerpt,
     publishedAt,
+    articleType,
     ${articlePeopleFields},
     "coverImage": select(
       defined(coverImage.asset._ref) => coverImage {
@@ -277,7 +278,12 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
       defined(slug.current) &&
       defined(publishedAt) &&
       publishedAt <= now()
-    ] | order(publishedAt desc, _id asc)[0...3] {
+    ] {
+      "relatedRank": select(
+        defined(rubrica._ref) && rubrica._ref == *[_type == "article" && slug.current == $slug][0].rubrica._ref => 0,
+        articleType == *[_type == "article" && slug.current == $slug][0].articleType => 1,
+        2
+      ),
       ${articleSummaryFields},
       "coverImage": select(
         defined(coverImage.asset._ref) => coverImage {
@@ -288,7 +294,7 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
         },
         null
       )
-    }
+    } | order(relatedRank asc, publishedAt desc, _id asc)[0...3]
   }
 `)
 

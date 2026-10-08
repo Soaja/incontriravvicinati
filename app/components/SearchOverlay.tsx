@@ -1,7 +1,9 @@
 'use client'
 import {useEffect, useRef, useState} from 'react'
 import {useRouter} from 'next/navigation'
-import {SearchResults, type SearchHit} from './SearchResults'
+import dynamic from 'next/dynamic'
+import type {SearchHit} from './SearchResults'
+const LiveSearchResults = dynamic(() => import('./SearchResults').then(module => module.SearchResults))
 
 export function SearchOverlay() {
   const router = useRouter()
@@ -69,7 +71,7 @@ export function SearchOverlay() {
   }, [open, term])
 
   const currentResults = resolvedQuery === term && term.length >= 2 ? articles : []
-  function close() {setOpen(false)}
+  function close() {setSelected(-1); setOpen(false)}
   function submit() {
     if (term.length < 2) return
     close()
@@ -107,7 +109,7 @@ export function SearchOverlay() {
           <button className="type-meta search-submit" type="submit">Cerca →</button>
         </form>
         <p className="search-status type-meta" aria-live="polite">{error || (term.length < 2 ? 'Scrivi almeno 2 caratteri.' : loading || resolvedQuery !== term ? 'Ricerca in corso…' : currentResults.length ? `${currentResults.length} risultati · Invio per vedere tutti` : `Nessun risultato per «${term}»`)}</p>
-        <SearchResults articles={currentResults} selected={selected} interactive onChoose={close} onSelect={setSelected} />
+        {open ? <LiveSearchResults articles={currentResults} selected={selected} interactive onChoose={close} onSelect={setSelected} /> : null}
       </div>
     </dialog>
   </>

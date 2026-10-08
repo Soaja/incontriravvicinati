@@ -20,6 +20,7 @@ const robotoMono = Roboto_Mono({
   subsets: ['latin'],
   style: ['normal', 'italic'],
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
   title: 'Incontri Ravvicinati',
   description: 'Rivista indipendente di cinema',
   verification: {google: process.env.GOOGLE_SITE_VERIFICATION?.trim() || undefined},
+  robots: {index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1},
+  alternates: {types: {'application/rss+xml': [{url: `${siteUrl}/rss.xml`, title: 'Incontri Ravvicinati — ultimi articoli'}]}},
   openGraph: {
     type: 'website',
     locale: 'it_IT',

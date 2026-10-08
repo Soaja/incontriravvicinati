@@ -1,7 +1,8 @@
 import {AuthorLinks, articleAuthors, authorHref, type Author} from '@/app/components/AuthorLinks'
 import {AuthorPhoto} from '@/app/components/AuthorPhoto'
 import {RubricaLabel, type Rubrica} from '@/app/components/RubricaLabel'
-import {sectionLabel} from '@/app/lib/sections'
+import {sectionLabel, sections} from '@/app/lib/sections'
+import {metaDescription, publisher, seoAlternates} from '@/app/lib/seo'
 import {ArticleTitle} from '@/app/components/ArticleTitle'
 import type {SanityImageSource} from '@sanity/image-url'
 import type {Metadata} from 'next'
@@ -88,7 +89,7 @@ type ArticlePageData = {
   related: RelatedArticle[]
 }
 
-type ArticleMetadata = Pick<Article, 'title' | 'excerpt' | 'publishedAt' | '_updatedAt' | 'coverImage'> & {
+type ArticleMetadata = Pick<Article, 'title' | 'excerpt' | 'publishedAt' | '_updatedAt' | 'coverImage' | 'articleType'> & {
   author: Author | null
   authors?: Author[] | null
 }
@@ -128,29 +129,31 @@ export async function generateMetadata({params}: ArticlePageProps): Promise<Meta
   }
 
   const canonical = `${siteUrl}/articoli/${encodeURIComponent(slug)}`
-  const description = article.excerpt?.trim() || article.title
+  const title = article.title.trim()
+  const description = metaDescription(article.excerpt?.trim() || article.title)
   const image =
     getSanityImageUrl(article.coverImage, (imageBuilder) =>
       imageBuilder.width(1200).height(630).fit('crop').auto('format').url(),
     ) ?? undefined
 
   return {
-    title: `${article.title} | Incontri Ravvicinati`,
+    title: `${title} | Incontri Ravvicinati`,
     description,
-    alternates: {canonical},
+    alternates: seoAlternates(canonical),
     openGraph: {
       type: 'article',
       url: canonical,
       siteName: 'Incontri Ravvicinati',
-      title: article.title,
+      title,
       description,
       publishedTime: article.publishedAt ?? undefined,
       modifiedTime: article._updatedAt ?? undefined,
-      authors: articleAuthors(article).map(author => author.name!),
-      images: image ? [{url: image, alt: article.coverImage?.alt ?? article.title}] : undefined,
+      authors: articleAuthors(article).flatMap(author => authorHref(author) ? [siteUrl + authorHref(author)] : []),
+      section: sectionLabel(article.articleType),
+      images: image ? [{url: image, width: 1200, height: 630, alt: article.coverImage?.alt?.trim() || article.title}] : undefined,
     },
-    twitter: {card: 'summary_large_image', title: article.title, description,
-      images: image ? [{url: image, alt: article.coverImage?.alt ?? article.title}] : undefined},
+    twitter: {card: 'summary_large_image', title, description,
+      images: image ? [{url: image, width: 1200, height: 630, alt: article.coverImage?.alt?.trim() || article.title}] : undefined},
   }
 }
 
@@ -174,26 +177,34 @@ export default async function ArticlePage({params}: ArticlePageProps) {
     ? `N. ${String(article.issue.issueNumber).padStart(2, '0')}`
     : article.issue?.title
   const authors = articleAuthors(article)
+  const section = sections.find(section => section.value === article.articleType)
+  const sectionUrl = `${siteUrl}/articoli${section ? `?type=${section.slug}` : ''}`
+  const breadcrumbs = [{name: 'Homepage', url: siteUrl}, {name: section?.label ?? 'Articoli', url: sectionUrl}, {name: article.title, url: articleUrl}]
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': article.articleType === 'news' ? 'NewsArticle' : 'Article',
-    headline: article.title,
-    description: article.excerpt || undefined,
+    '@type': 'NewsArticle',
+    headline: article.title.trim(),
+    description: metaDescription(article.excerpt?.trim() || article.title),
     datePublished: article.publishedAt || undefined,
     dateModified: article._updatedAt || undefined,
     mainEntityOfPage: articleUrl,
-    image: heroUrl ? [heroUrl] : undefined,
-    author: authors.map(author => ({'@type': 'Person', name: author.name, url: authorHref(author) ? `${siteUrl}${authorHref(author)}` : undefined})),
-    publisher: {'@type': 'Organization', name: 'Incontri Ravvicinati', url: siteUrl,
-      logo: {'@type': 'ImageObject', url: `${siteUrl}/icon.png`}},
+    image: heroUrl ? [1200, 900, 675].flatMap(height => {
+      const image = getSanityImageUrl(article.coverImage, builder => builder.width(1200).height(height).fit('crop').auto('format').url())
+      return image ? [image] : []
+    }) : undefined,
+    author: authors.map(author => ({'@type': 'Person', name: author.name?.trim(), url: authorHref(author) ? `${siteUrl}${authorHref(author)}` : undefined})),
+    publisher,
+    articleSection: sectionLabel(article.articleType),
+    inLanguage: 'it-IT',
   }
 
   return (
     <main id="main-content" className="article-page">
       <article>
         <header className="article-header site-container">
+          <nav className="article-breadcrumbs type-meta" aria-label="Percorso di navigazione"><ol>{breadcrumbs.map((crumb, index) => <li key={crumb.url}>{index < breadcrumbs.length - 1 ? <Link href={crumb.url.replace(siteUrl, '') || '/'}>{crumb.name}</Link> : <span aria-current="page">{crumb.name}</span>}</li>)}</ol></nav>
           <div className="article-header__eyebrow type-meta">
-            <span>{sectionLabel(article.articleType)}<RubricaLabel rubrica={article.rubrica} /></span>
+            <span><Link href={sectionUrl.replace(siteUrl, '')}>{sectionLabel(article.articleType)}</Link><RubricaLabel rubrica={article.rubrica} /></span>
             {issueLabel ? <span>{issueLabel}</span> : null}
           </div>
 
@@ -216,11 +227,13 @@ export default async function ArticlePage({params}: ArticlePageProps) {
           <figure className="article-hero">
             <Image
               src={heroUrl}
-              alt={article.coverImage.alt ?? article.title}
+              alt={article.coverImage.alt?.trim() || article.title}
               width={heroWidth}
               height={heroHeight}
               sizes="(max-width: 767px) 100vw, 1200px"
-              priority
+              loading="eager"
+              fetchPriority="high"
+              quality={60}
               placeholder={heroLqip ? 'blur' : 'empty'}
               blurDataURL={heroLqip}
             />
@@ -231,7 +244,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
         ) : null}
 
         <div className="article-reading-column">
-          {article.body ? <ArticleBody value={article.body} /> : null}
+          {article.body ? <ArticleBody value={article.body} title={article.title} /> : null}
 
           {article.tags?.length ? (
             <ul className="article-tags type-meta" aria-label="Tag dell'articolo">
@@ -257,7 +270,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
 
       <section className="related-articles site-container" aria-labelledby="related-heading">
         <header className="related-articles__header">
-          <h2 id="related-heading">Altri articoli</h2>
+          <h2 id="related-heading">Leggi anche</h2>
           <Link className="type-meta" href="/articoli">
             Tutti gli articoli <ArrowIcon />
           </Link>
@@ -286,7 +299,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
                               .fit('crop')
                               .auto('format')
                               .url()}
-                            alt={item.coverImage.alt ?? itemTitle}
+                            alt={item.coverImage.alt?.trim() || itemTitle}
                             fill
                             sizes="(max-width: 767px) 100vw, 33vw"
                           />
@@ -312,7 +325,7 @@ export default async function ArticlePage({params}: ArticlePageProps) {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd).replace(/</g, '\\u003c')}}
+        dangerouslySetInnerHTML={{__html: JSON.stringify([jsonLd, {'@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbs.map((crumb, index) => ({'@type': 'ListItem', position: index + 1, name: crumb.name, item: crumb.url}))}]).replace(/</g, '\\u003c')}}
       />
     </main>
   )

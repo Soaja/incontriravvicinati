@@ -61,9 +61,11 @@ export function FeaturedIssueHero({issue}: FeaturedIssueHeroProps) {
                 .fit('crop')
                 .auto('format')
                 .url()}
-              alt={issue.coverImage.alt ?? `Copertina ${issue.title ?? issueLabel}`}
+              alt={issue.coverImage.alt?.trim() || `Copertina ${issue.title ?? issueLabel}`}
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
+              quality={60}
               sizes="(max-width: 767px) 100vw, 58vw"
             />
           </div>

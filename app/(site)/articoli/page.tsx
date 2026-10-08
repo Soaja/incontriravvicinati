@@ -4,6 +4,7 @@ import {notFound, permanentRedirect} from 'next/navigation'
 import {Pagination} from '@/app/components/Pagination'
 import {ARTICLES_PER_PAGE, pageNumber, pageUrl, type QueryValue} from '@/app/lib/pagination'
 import {siteUrl} from '@/app/lib/site-url'
+import {metaDescription, seoAlternates} from '@/app/lib/seo'
 import {ARCHIVE_COUNT_QUERY, archivePageQuery} from '@/sanity/lib/archive'
 import {ArticleFilters} from '@/app/components/ArticleFilters'
 import {ArticleList, type ArticleListItem} from '@/app/components/ArticleList'
@@ -20,10 +21,10 @@ export async function generateMetadata({searchParams}: Props): Promise<Metadata>
   const page = pageNumber(params.pagina) ?? 1
   const section = sections.find(section => section.slug === type)
   const author = authorSlug ? (await sanityFetch<Author | null>({query: AUTHOR_QUERY, params: {slug: authorSlug}})).data : null
-  const title = author?.name?.trim() ?? section?.label ?? 'Articoli'
+  const title = author ? `Articoli di ${author.name?.trim()}${section ? ` · ${section.label}` : ''}` : section ? `${section.label} di cinema` : 'Articoli di cinema'
   return {title: `${title}${page > 1 ? ` · Pagina ${page}` : ''} | Incontri Ravvicinati`,
-    description: 'Articoli, recensioni e approfondimenti di Incontri Ravvicinati.',
-    alternates: {canonical: siteUrl + pageUrl('/articoli', {type: section?.slug ?? '', author: authorSlug}, page)}}
+    description: metaDescription(author ? `${section?.label ?? 'Articoli'} di ${author.name?.trim()} per Incontri Ravvicinati. ${author.bio?.trim() || 'Recensioni, analisi e storie di cinema.'}` : section ? `${section.label} di cinema: film, autori e cultura cinematografica raccontati dalla rivista indipendente Incontri Ravvicinati.` : 'Tutti gli articoli di Incontri Ravvicinati: recensioni, approfondimenti, interviste e storie per esplorare il cinema dentro e fuori dai set.'),
+    alternates: seoAlternates(siteUrl + pageUrl('/articoli', {type: section?.slug ?? '', author: authorSlug}, page))}
 }
 
 type Props = {searchParams: Promise<{type?: QueryValue; author?: QueryValue; pagina?: QueryValue}>}

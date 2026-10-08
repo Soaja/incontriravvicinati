@@ -5,6 +5,7 @@ import {SearchResults, type SearchHit} from '@/app/components/SearchResults'
 import {ARTICLES_PER_PAGE, firstValue, pageNumber, pageUrl, type QueryValue} from '@/app/lib/pagination'
 import {searchParameters} from '@/app/lib/search'
 import {siteUrl} from '@/app/lib/site-url'
+import {seoAlternates} from '@/app/lib/seo'
 import {SEARCH_COUNT_QUERY, searchPageQuery} from '@/sanity/lib/archive'
 import {sanityFetch} from '@/sanity/lib/live'
 
@@ -14,7 +15,7 @@ export async function generateMetadata({searchParams}: Props): Promise<Metadata>
   const {query} = searchParameters(firstValue(params.q) ?? '')
   const page = pageNumber(params.pagina) ?? 1
   return {title: `Ricerca${query ? `: ${query}` : ''}${page > 1 ? ` · Pagina ${page}` : ''} | Incontri Ravvicinati`,
-    robots: {index: false, follow: true}, alternates: {canonical: siteUrl + pageUrl('/cerca', {q: query}, page)}}
+    robots: {index: false, follow: true}, alternates: seoAlternates(siteUrl + pageUrl('/cerca', {q: query}, page))}
 }
 
 export default async function CercaPage({searchParams}: Props) {

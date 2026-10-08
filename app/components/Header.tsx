@@ -70,7 +70,7 @@ export function Header() {
         </div>
 
         <Link className="site-brand" href="/" aria-label="Incontri Ravvicinati, home">
-          <BrandLogo variant="positive" priority />
+          <BrandLogo variant="positive" />
         </Link>
       </div>
     </header>

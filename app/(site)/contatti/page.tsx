@@ -1,4 +1,6 @@
 import type {Metadata} from 'next'
+import {seoAlternates} from '@/app/lib/seo'
+import {siteUrl} from '@/app/lib/site-url'
 
 import {ArrowIcon} from '@/app/components/ArrowIcon'
 import {contactDetails} from '@/app/lib/contact'
@@ -6,6 +8,7 @@ import {contactDetails} from '@/app/lib/contact'
 export const metadata: Metadata = {
   title: 'Contatti',
   description: 'Contatta Incontri Ravvicinati.',
+  alternates: seoAlternates(`${siteUrl}/contatti`),
 }
 
 const inquiries = [

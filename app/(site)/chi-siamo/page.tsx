@@ -1,11 +1,14 @@
 import type {Metadata} from 'next'
 import Link from 'next/link'
+import {seoAlternates} from '@/app/lib/seo'
+import {siteUrl} from '@/app/lib/site-url'
 
 import {ArrowIcon} from '@/app/components/ArrowIcon'
 
 export const metadata: Metadata = {
   title: 'Chi siamo',
   description: 'Il progetto editoriale di Incontri Ravvicinati.',
+  alternates: seoAlternates(`${siteUrl}/chi-siamo`),
 }
 
 const principles = [
