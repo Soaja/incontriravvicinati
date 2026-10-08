@@ -1,4 +1,5 @@
 import {defineQuery} from 'next-sanity'
+import {ARTICLES_PER_PAGE} from '@/app/lib/pagination'
 
 const articlePeopleFields = /* groq */ `
   author->{_id, name, "slug": slug.current, role, bio, photo{asset->{_id, url, metadata{dimensions, lqip}}, crop, hotspot, alt}},
@@ -7,7 +8,7 @@ const articlePeopleFields = /* groq */ `
   }
 `
 
-const articleSummaryFields = /* groq */ `
+export const articleSummaryFields = /* groq */ `
   _id,
   title,
   "slug": slug.current,
@@ -161,7 +162,7 @@ export const ARTICLES_PAGE_QUERY = defineQuery(/* groq */ `
     ($authorSlug == "" || author->slug.current == $authorSlug || author._ref == $authorSlug ||
       count(authors[@._ref == $authorSlug || @->slug.current == $authorSlug]) > 0) &&
     ($rubricaSlug == "" || rubrica->slug.current == $rubricaSlug)
-  ] | order(publishedAt desc, _id asc)[0...24] {
+  ] | order(publishedAt desc, _id asc)[0...${ARTICLES_PER_PAGE}] {
     ${articleSummaryFields},
     excerpt,
     "coverImage": select(
@@ -205,6 +206,7 @@ export const ARTICLE_METADATA_QUERY = defineQuery(/* groq */ `
     publishedAt <= now()
   ][0] {
     title,
+    _updatedAt,
     excerpt,
     publishedAt,
     ${articlePeopleFields},
@@ -230,6 +232,7 @@ export const ARTICLE_PAGE_QUERY = defineQuery(/* groq */ `
     ][0] {
       _id,
       title,
+      _updatedAt,
       "slug": slug.current,
       excerpt,
       articleType,

@@ -33,15 +33,15 @@ function formatDate(value: string | null) {
 }
 
 
-export function ArticleList({articles, heading = 'Tutte le storie'}: {articles: ArticleListItem[]; heading?: string}) {
+export function ArticleList({articles, heading = 'Tutte le storie', total = articles.length, offset = 0}: {articles: ArticleListItem[]; heading?: string; total?: number; offset?: number}) {
   return (
-      <section className="article-archive" aria-labelledby="article-archive-heading">
+      <section id="lista-articoli" className="article-archive" aria-labelledby="article-archive-heading">
         <header className="article-archive__header">
           <h2 id="article-archive-heading">
             {heading}
           </h2>
           <p className="type-meta">
-            {articles.length} {articles.length === 1 ? 'articolo' : 'articoli'}
+            {total} {total === 1 ? 'articolo' : 'articoli'}
           </p>
         </header>
 
@@ -60,7 +60,7 @@ export function ArticleList({articles, heading = 'Tutte le storie'}: {articles: 
                 >
                   <div className="article-archive-card__label">
                     <p className="type-meta">{sectionLabel(article.articleType)}<RubricaLabel rubrica={article.rubrica} /></p>
-                    <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                    <span aria-hidden="true">{String(offset + index + 1).padStart(2, '0')}</span>
                   </div>
 
                   {article.coverImage ? (

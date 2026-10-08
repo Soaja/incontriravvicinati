@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useRef, useState} from 'react'
 
 import {BrandLogo} from './BrandLogo'
+import {SearchOverlay} from './SearchOverlay'
 
 const navigation = [
   {href: '/', label: 'Homepage'},
@@ -65,6 +66,7 @@ export function Header() {
               </svg>
             </button>
           </nav>
+          <SearchOverlay />
         </div>
 
         <Link className="site-brand" href="/" aria-label="Incontri Ravvicinati, home">

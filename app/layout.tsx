@@ -1,5 +1,6 @@
 import type {Metadata} from 'next'
 import {Geist, Jura, Roboto_Mono} from 'next/font/google'
+import {siteUrl} from '@/app/lib/site-url'
 
 import './globals.css'
 
@@ -22,7 +23,7 @@ const robotoMono = Roboto_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.incontriravvicinatimag.it'),
+  metadataBase: new URL(siteUrl),
   title: 'Incontri Ravvicinati',
   description: 'Rivista indipendente di cinema',
   openGraph: {

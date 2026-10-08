@@ -22,7 +22,10 @@ import {
   ARTICLE_SLUGS_QUERY,
 } from '@/sanity/lib/queries'
 
-const siteUrl = 'https://www.incontriravvicinatimag.it'
+import {siteUrl} from '@/app/lib/site-url'
+
+export const revalidate = 60
+export const dynamicParams = true
 
 type EditorialImage = SanityImageSource & {
   alt?: string | null
@@ -58,6 +61,7 @@ type Article = {
   rubrica?: Rubrica | null
   authors?: Author[] | null
   publishedAt: string | null
+  _updatedAt: string | null
   readingTime: number | null
   tags: string[] | null
   coverImage: EditorialImage | null
@@ -84,7 +88,7 @@ type ArticlePageData = {
   related: RelatedArticle[]
 }
 
-type ArticleMetadata = Pick<Article, 'title' | 'excerpt' | 'publishedAt' | 'coverImage'> & {
+type ArticleMetadata = Pick<Article, 'title' | 'excerpt' | 'publishedAt' | '_updatedAt' | 'coverImage'> & {
   author: Author | null
   authors?: Author[] | null
 }
@@ -124,6 +128,7 @@ export async function generateMetadata({params}: ArticlePageProps): Promise<Meta
   }
 
   const canonical = `${siteUrl}/articoli/${encodeURIComponent(slug)}`
+  const description = article.excerpt?.trim() || article.title
   const image =
     getSanityImageUrl(article.coverImage, (imageBuilder) =>
       imageBuilder.width(1200).height(630).fit('crop').auto('format').url(),
@@ -131,18 +136,21 @@ export async function generateMetadata({params}: ArticlePageProps): Promise<Meta
 
   return {
     title: `${article.title} | Incontri Ravvicinati`,
-    description: article.excerpt ?? undefined,
+    description,
     alternates: {canonical},
     openGraph: {
       type: 'article',
       url: canonical,
       siteName: 'Incontri Ravvicinati',
       title: article.title,
-      description: article.excerpt ?? undefined,
+      description,
       publishedTime: article.publishedAt ?? undefined,
+      modifiedTime: article._updatedAt ?? undefined,
       authors: articleAuthors(article).map(author => author.name!),
       images: image ? [{url: image, alt: article.coverImage?.alt ?? article.title}] : undefined,
     },
+    twitter: {card: 'summary_large_image', title: article.title, description,
+      images: image ? [{url: image, alt: article.coverImage?.alt ?? article.title}] : undefined},
   }
 }
 
@@ -168,14 +176,16 @@ export default async function ArticlePage({params}: ArticlePageProps) {
   const authors = articleAuthors(article)
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': article.articleType === 'news' ? 'NewsArticle' : 'Article',
     headline: article.title,
     description: article.excerpt || undefined,
     datePublished: article.publishedAt || undefined,
+    dateModified: article._updatedAt || undefined,
     mainEntityOfPage: articleUrl,
     image: heroUrl ? [heroUrl] : undefined,
     author: authors.map(author => ({'@type': 'Person', name: author.name, url: authorHref(author) ? `${siteUrl}${authorHref(author)}` : undefined})),
-    publisher: {'@type': 'Organization', name: 'Incontri Ravvicinati'},
+    publisher: {'@type': 'Organization', name: 'Incontri Ravvicinati', url: siteUrl,
+      logo: {'@type': 'ImageObject', url: `${siteUrl}/icon.png`}},
   }
 
   return (

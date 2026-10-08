@@ -25,8 +25,8 @@ function loadTypeScript(file, imports = {}) {
   assert.deepEqual(images.imageDimensions({asset, crop: {left: 0.1, right: 0.1, top: 0.25, bottom: 0}}), {width: 960, height: 600})
   assert.deepEqual(images.imageDimensions({asset: {_ref: asset._id}}), {width: 1200, height: 800})
 
-  const querySource = fs.readFileSync('sanity/lib/queries.ts', 'utf8').replace(/^import.*\n/, '').replaceAll('export const ', 'const ')
-  const {ARTICLES_PAGE_QUERY, ARTICLE_PAGE_QUERY, SECTION_ORDER_QUERY} = new Function('defineQuery', querySource + '\nreturn {ARTICLES_PAGE_QUERY, ARTICLE_PAGE_QUERY, SECTION_ORDER_QUERY}')(value => value)
+  const pagination = loadTypeScript('app/lib/pagination.ts')
+  const {ARTICLES_PAGE_QUERY, ARTICLE_PAGE_QUERY, SECTION_ORDER_QUERY} = loadTypeScript('sanity/lib/queries.ts', {'@/app/lib/pagination': pagination})
   const dataset = [
     {_id: 'main', _type: 'author', name: 'Autore Uno', slug: {current: 'autore-uno'}},
     {_id: 'coauthor', _type: 'author', name: 'Autrice Due', slug: {current: 'autrice-due'}},

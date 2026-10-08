@@ -1,13 +1,13 @@
 import type {MetadataRoute} from 'next'
 
-const siteUrl = 'https://www.incontriravvicinatimag.it'
+import {siteUrl} from '@/app/lib/site-url'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/studio/',
+      disallow: ['/studio', '/cerca'],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
