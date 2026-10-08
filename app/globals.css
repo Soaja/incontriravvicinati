@@ -3119,6 +3119,11 @@ a:focus-visible {
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 0.95;
   letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+
+.article-author > div {
+  min-width: 0;
 }
 
 .article-author__role {
@@ -3874,7 +3879,7 @@ a:focus-visible {
   }
 
   .article-author {
-    grid-template-columns: 5rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 
