@@ -42,7 +42,6 @@ const artDirection: RosterMember[] = [
 ]
 
 const editors: RosterMember[] = [
-  {role: 'Redattore', name: 'Luca Barbantini'},
   {role: 'Redattore', name: 'Eugenio Begato'},
   {role: 'Redattore', name: 'Lorenzo Bertoldo'},
   {role: 'Redattore', name: 'Luca Dimauro'},
@@ -130,7 +129,7 @@ export default async function RedazionePage() {
                 <span aria-hidden="true">0{index + 1}</span>
                 <p className="type-meta">{member.role}</p>
                 <h3 className="masthead-name">
-                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={80} />
                   <MemberName member={member} asset={asset} />
                 </h3>
                 {asset?.bio ? <p className="direction-member__bio">{asset.bio}</p> : null}
@@ -163,7 +162,7 @@ export default async function RedazionePage() {
 
 
                 <h3 className="masthead-name">
-                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={80} />
                   <MemberName member={member} asset={asset} />
                 </h3>
                 {asset?.bio ? <p className="art-roster-member__bio">{asset.bio}</p> : null}
@@ -188,7 +187,7 @@ export default async function RedazionePage() {
                 <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <p className="type-meta">{member.role}</p>
                 <h3 className="masthead-name">
-                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={80} />
                   <MemberName member={member} asset={asset} />
                 </h3>
               </li>
@@ -211,7 +210,7 @@ export default async function RedazionePage() {
               <li key={member.name}>
                 <span aria-hidden="true">S/{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="masthead-name">
-                  <AuthorPhoto author={asset ?? {name: member.name}} size={64} />
+                  <AuthorPhoto author={asset ?? {name: member.name}} size={80} />
                   <SocialMemberName member={member} asset={asset} />
                 </h3>
                 <p className="type-meta">{member.role}</p>

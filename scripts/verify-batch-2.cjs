@@ -15,7 +15,9 @@ function loadTypeScript(file, imports = {}) {
   const {sections, orderedSections} = loadTypeScript('app/lib/sections.ts')
   assert.equal(orderedSections(['festival', 'selezione'])[0].label, 'Festival')
   assert.equal(orderedSections(['festival', 'selezione'])[1].slug, 'editoriali')
-  assert.equal(orderedSections(['festival', 'festival']).length, 10)
+  assert.equal(orderedSections(['festival', 'festival']).length, 9)
+  assert.equal(orderedSections(['news', 'festival'])[0].value, 'festival')
+  assert.ok(!orderedSections(['news']).some(section => section.value === 'news'))
   assert.equal(sections.find(section => section.value === 'selezione').label, 'Editoriali')
 
   const images = loadTypeScript('sanity/lib/image.ts', {'../env': {projectId: 'test1234', dataset: 'production'}})

@@ -8,7 +8,6 @@ export const sections = [
   {value: 'intervista', slug: 'intervista', label: 'Interviste', singular: 'Intervista'},
   {value: 'festival', slug: 'festival', label: 'Festival', singular: 'Festival'},
   {value: 'reportage', slug: 'reportage', label: 'Reportage', singular: 'Reportage'},
-  {value: 'news', slug: 'news', label: 'News', singular: 'News'},
   {value: 'selezione', slug: 'editoriali', label: 'Editoriali', singular: 'Editoriale'},
 ] as const
 

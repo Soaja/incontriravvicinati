@@ -30,7 +30,6 @@ export function SloganSection() {
         </h2>
 
         <div className="slogan-section__footer">
-          <p className="type-meta">Cinema, cultura visiva, tempo per guardare.</p>
           <Link className="slogan-section__cta type-meta" href="/chi-siamo">
             Scopri chi siamo <ArrowIcon />
           </Link>

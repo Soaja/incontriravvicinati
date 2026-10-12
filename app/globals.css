@@ -525,6 +525,11 @@ a:focus-visible {
   background: var(--color-ink);
 }
 
+.latest-article__media picture {
+  position: absolute;
+  inset: 0;
+}
+
 .latest-article__media img {
   object-fit: cover;
 }
@@ -725,6 +730,7 @@ a:focus-visible {
 }
 
 .slogan-section__cta {
+  grid-column: -2 / -1;
   display: inline-flex;
   min-height: 3.5rem;
   width: 100%;
@@ -3879,12 +3885,17 @@ a:focus-visible {
   }
 
   .article-author {
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .article-author__photo {
-    width: 5rem;
+  .article-author > .author-photo {
+    flex-shrink: 0;
+  }
+
+  .article-author > div {
+    width: 100%;
   }
 
   .related-articles {

@@ -24,10 +24,11 @@ export const sectionSettings = defineType({
       },
     })],
     options: {sortable: true},
-    validation: rule => rule.required().length(sections.length).custom(value => {
+    validation: rule => rule.required().custom(value => {
       if (!value) return true
-      const keys = value.map(item => (item as {section?: string}).section)
-      return new Set(keys).size === sections.length && keys.every(key => sections.some(section => section.value === key)) || 'Inserisci tutte le sezioni una sola volta.'
+      // Existing saved orders may still contain the retired News section.
+      const keys = value.map(item => (item as {section?: string}).section).filter(key => key !== 'news')
+      return keys.length === sections.length && new Set(keys).size === sections.length && keys.every(key => sections.some(section => section.value === key)) || 'Inserisci tutte le sezioni una sola volta.'
     }),
   })],
   preview: {prepare: () => ({title: 'Ordine delle sezioni'})},

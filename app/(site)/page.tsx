@@ -100,21 +100,27 @@ export default async function Home() {
               const articleTitle = article.title ?? 'Titolo non disponibile'
               const coverImage = article.coverImage ? (
                 <div className="latest-article__media">
-                  <Image
-                    src={urlFor(article.coverImage)
-                      .width(index === 0 ? 1400 : 900)
-                      .height(index === 0 ? 1050 : 1100)
-                      .fit('crop')
-                      .auto('format')
-                      .url()}
-                    alt={article.coverImage.alt?.trim() || articleTitle}
-                    fill
-                    sizes={
-                      index === 0
-                        ? '(max-width: 767px) 100vw, 58vw'
-                        : '(max-width: 767px) 100vw, (max-width: 1100px) 42vw, 30vw'
-                    }
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 767px)"
+                      srcSet={urlFor(article.coverImage).width(1200).height(900).fit('crop').auto('format').url()}
+                    />
+                    <Image
+                      src={urlFor(article.coverImage)
+                        .width(index === 0 ? 1400 : 900)
+                        .height(index === 0 ? 1050 : 1100)
+                        .fit('crop')
+                        .auto('format')
+                        .url()}
+                      alt={article.coverImage.alt?.trim() || articleTitle}
+                      fill
+                      sizes={
+                        index === 0
+                          ? '(max-width: 767px) 100vw, 58vw'
+                          : '(max-width: 767px) 100vw, (max-width: 1100px) 42vw, 30vw'
+                      }
+                    />
+                  </picture>
                 </div>
               ) : null
 

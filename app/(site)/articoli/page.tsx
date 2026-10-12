@@ -67,7 +67,7 @@ export default async function ArticoliPage({searchParams}: Props) {
         </div>
         <h1>Articoli</h1>
         <p className="articles-page__intro">
-          Analisi, interviste, approfondimenti, news e tanti altri contenuti, che
+          Analisi, interviste, approfondimenti e tanti altri contenuti, che
           affiancheranno la nostra rivista (a cadenza trimestrale), per raccontare con
           puntualità le dinamiche del mondo cinematografico, dentro e fuori dai set.
         </p>
